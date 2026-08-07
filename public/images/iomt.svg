@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 520" role="img" aria-labelledby="title desc">
+  <title id="title">Intelligent healthcare with incremental learning</title>
+  <desc id="desc">An abstract healthcare diagnostic dashboard with connected devices and a learning curve.</desc>
+  <rect width="800" height="520" rx="24" fill="#f7f8fb"/>
+  <rect x="58" y="70" width="307" height="350" rx="22" fill="#e7eef8"/>
+  <rect x="92" y="106" width="239" height="119" rx="14" fill="#fff"/>
+  <path d="M115 165h34l19-30 32 70 28-47 17 20h63" fill="none" stroke="#df5c65" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+  <circle cx="152" cy="307" r="48" fill="#4acaa8"/>
+  <path d="M152 276v63M121 307h63" stroke="#fff" stroke-width="12" stroke-linecap="round"/>
+  <rect x="438" y="102" width="302" height="244" rx="18" fill="#fff" stroke="#cbd5e1" stroke-width="4"/>
+  <path d="M472 302c46-109 90-69 126-136 29-53 64-30 108-110" fill="none" stroke="#4acaa8" stroke-width="11" stroke-linecap="round"/>
+  <path d="M472 302c44-56 88-43 124-78 45-43 78-43 111-61" fill="none" stroke="#4d6fa3" stroke-width="7" stroke-linecap="round" stroke-dasharray="14 16"/>
+  <g fill="#4acaa8"><circle cx="472" cy="302" r="9"/><circle cx="598" cy="166" r="9"/><circle cx="706" cy="56" r="9"/></g>
+  <path d="M446 378h286" stroke="#cbd5e1" stroke-width="3"/>
+  <text x="80" y="469" fill="#27364d" font-family="Arial, sans-serif" font-size="28" font-weight="700">IOMT · INCREMENTAL LEARNING</text>
+</svg>

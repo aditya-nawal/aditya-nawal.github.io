@@ -3,3 +3,10 @@ dist/
 .astro/
 .DS_Store
 npm-debug.log*
+
+# Temporary local browser QA captures
+desktop-template.png
+desktop-template-final.png
+desktop-publications.png
+mobile-template.png
+mobile-template-wait.png

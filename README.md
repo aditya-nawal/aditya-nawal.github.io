@@ -2,6 +2,8 @@
 
 Personal research portfolio for `https://aditya-nawal.github.io`.
 
+The interface adapts the HTML5 UP “Read Only” template under CC BY 3.0. See `CREDITS.md` and `public/template-license.txt` for attribution and license details.
+
 ## Local development
 
 ```bash

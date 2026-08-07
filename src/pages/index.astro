@@ -1,111 +1,160 @@
 ---
-import { getCollection } from 'astro:content';
 import Layout from '../layouts/Layout.astro';
-import AgentDiagram from '../components/AgentDiagram.astro';
-import ResearchCard from '../components/ResearchCard.astro';
-import PublicationRow from '../components/PublicationRow.astro';
-import { news } from '../data/news';
-
-const research = (await getCollection('research')).sort((a, b) => a.data.number.localeCompare(b.data.number));
-const publications = (await getCollection('publications')).sort((a, b) => b.data.year.localeCompare(a.data.year));
-const featured = research.find((entry) => entry.data.featured) ?? research[0];
 ---
 
 <Layout>
-  <main>
-    <section class="statement-section page-shell" aria-labelledby="statement-title">
-      <div class="section-kicker"><span>00</span> RESEARCH STATEMENT</div>
-      <div class="statement-grid">
-        <div class="statement-copy">
-          <h1 id="statement-title">I study when AI agents decide to act.</h1>
-          <p class="statement-lede">My research examines how safety changes when language-model agents use tools, retrieve information, cross language boundaries, or collaborate with other agents.</p>
-          <p class="statement-byline">Aditya Nawal<br /><span>PhD Researcher · National University of Singapore</span></p>
-        </div>
-        <AgentDiagram />
-      </div>
-    </section>
+  <section id="header">
+    <header>
+      <span class="image avatar"><img src="/images/avatar.svg" alt="Aditya Nawal monogram" /></span>
+      <h1 id="logo"><a href="#about">Aditya Nawal</a></h1>
+      <p>PhD Researcher at NUS<br />Singapore</p>
+    </header>
+    <nav id="nav" aria-label="Primary navigation">
+      <ul>
+        <li><a href="#about" class="active">About</a></li>
+        <li><a href="#news">News</a></li>
+        <li><a href="#publications">Publications</a></li>
+        <li><a href="#research">Ongoing research</a></li>
+        <li><a href="#contact">Contact</a></li>
+        <li><a href="/cv.pdf" target="_blank" rel="noreferrer">CV</a></li>
+      </ul>
+    </nav>
+    <footer>
+      <ul class="icons">
+        <li><a href="https://scholar.google.com/citations?user=jUBC5FwAAAAJ&hl=en" class="ai ai-google-scholar" target="_blank" rel="noreferrer"><span class="label">Google Scholar</span></a></li>
+        <li><a href="https://www.linkedin.com/in/aditya-nawal-7a841719b/" class="icon brands fa-linkedin" target="_blank" rel="noreferrer"><span class="label">LinkedIn</span></a></li>
+        <li><a href="https://github.com/aditya-nawal" class="icon brands fa-github" target="_blank" rel="noreferrer"><span class="label">GitHub</span></a></li>
+        <li><a href="mailto:aditya1nawal@gmail.com" class="icon solid fa-envelope"><span class="label">Email</span></a></li>
+      </ul>
+    </footer>
+  </section>
 
-    <section class="section-block page-shell" id="research" aria-labelledby="research-title">
-      <div class="section-heading">
-        <div class="section-kicker"><span>01</span> RESEARCH DIRECTIONS</div>
-        <h2 id="research-title">Three questions about<br /><em>agentic behaviour.</em></h2>
-      </div>
-      <div class="research-grid">
-        {research.map((entry) => <ResearchCard entry={entry} />)}
-      </div>
-    </section>
-
-    <section class="section-block section-block--work page-shell" id="work" aria-labelledby="work-title">
-      <div class="section-heading section-heading--row">
-        <div>
-          <div class="section-kicker"><span>02</span> SELECTED WORK</div>
-          <h2 id="work-title">Research as a set of<br /><em>inspectable systems.</em></h2>
+  <div id="wrapper">
+    <div id="main">
+      <section id="about">
+        <div class="container">
+          <header class="major">
+            <h2>Aditya Nawal</h2>
+            <p>PhD researcher in Electrical and Computer Engineering<br />National University of Singapore</p>
+          </header>
+          <p>I study how language-model agents behave when they retrieve information, use external tools, cross language boundaries, and collaborate with other agents. My research focuses on safety and security failures that arise in these settings—and on evaluations and defences that make those failures inspectable.</p>
+          <p>Before starting my PhD, I was a Software Development Engineer at Microsoft, where I built Azure OpenAI-assisted reasoning workflows and production tooling for cloud network diagnosis.</p>
         </div>
-        <p class="section-aside">The projects below turn broad questions about alignment into concrete evaluations, benchmarks, and mechanisms that can be examined.</p>
-      </div>
-      <div class="work-grid">
-        {featured && <ResearchCard entry={featured} />}
-        <article class="engineering-card">
-          <div class="engineering-card__topline"><span>ENGINEERING BACKGROUND</span><span>MICROSOFT · 2022—2024</span></div>
-          <div class="engineering-card__main">
-            <div>
-              <h3>From research questions<br />to working tools.</h3>
-              <p>Before NUS, I built Azure OpenAI-assisted reasoning workflows and production tooling for cloud network diagnosis using C# and React.</p>
-            </div>
-            <div class="engineering-schematic" aria-hidden="true">
-              <span class="schematic-node">telemetry</span>
-              <span class="schematic-line"></span>
-              <span class="schematic-node schematic-node--accent">reasoning</span>
-              <span class="schematic-line"></span>
-              <span class="schematic-node">remediation</span>
-            </div>
+      </section>
+
+      <section id="news">
+        <div class="container">
+          <h3>Latest News</h3>
+          <ul>
+            <li><strong>May 2026:</strong> Released <em>Relevance as a Vulnerability</em>, introducing AgentREVEAL and HarmURLBench for studying retrieval-induced safety degradation in LLM agents.</li>
+            <li><strong>2025:</strong> Started PhD research in the Department of Electrical and Computer Engineering at NUS.</li>
+            <li><strong>2024:</strong> Published work on generative image systems and incremental learning for intelligent healthcare.</li>
+          </ul>
+        </div>
+      </section>
+
+      <section id="publications">
+        <div class="container">
+          <h3>Selected Publications</h3>
+          <div class="features">
+            <article>
+              <a class="image" href="https://arxiv.org/abs/2605.29224" target="_blank" rel="noreferrer"><img src="/images/retrieval-safety.png" alt="Illustration of retrieval changing an LLM agent's safety behaviour" /></a>
+              <div class="inner">
+                <p>
+                  <b>Relevance as a Vulnerability: How Web Retrieval Degrades Safety Alignment in LLM Agents</b><br />
+                  <b>Aditya Nawal</b>, Manit Baser, Mohan Gurusamy<br />
+                  In <i>arXiv preprint arXiv:2605.29224</i> (2026)<br />
+                  <span class="publication-label">AgentREVEAL · HarmURLBench · retrieval-induced safety</span><br />
+                  <a href="https://arxiv.org/pdf/2605.29224" target="_blank" rel="noreferrer" title="Paper PDF"><i class="fas fa-file-pdf"></i><span class="label">PDF</span></a>
+                  &nbsp;
+                  <a href="https://arxiv.org/abs/2605.29224" target="_blank" rel="noreferrer" title="arXiv page"><i class="fas fa-globe"></i><span class="label">Paper page</span></a>
+                </p>
+              </div>
+            </article>
+
+            <article>
+              <a class="image" href="https://dl.acm.org/doi/10.1145/3689641" target="_blank" rel="noreferrer"><img src="/images/generative-ai.svg" alt="Abstract visual representing generative AI image systems" /></a>
+              <div class="inner">
+                <p>
+                  <b>Revolutionizing Visuals: The Role of Generative AI in Modern Image Generation</b><br />
+                  Gaurang Bansal, <b>Aditya Nawal</b>, Vinay Chamola, Norbert Herencsar<br />
+                  In <i>ACM Transactions on Multimedia Computing, Communications and Applications</i> (2024)<br />
+                  <span class="publication-label">Survey of modern image-generation systems and deployment trade-offs</span><br />
+                  <a href="https://dl.acm.org/doi/10.1145/3689641" target="_blank" rel="noreferrer" title="Publisher page"><i class="fas fa-file-pdf"></i><span class="label">Paper</span></a>
+                  &nbsp;
+                  <a href="https://www.researchgate.net/publication/383120612_Revolutionizing_Visuals_The_Role_of_Generative_AI_in_Modern_Image_Generation" target="_blank" rel="noreferrer" title="PDF"><i class="fas fa-globe"></i><span class="label">PDF</span></a>
+                </p>
+              </div>
+            </article>
+
+            <article>
+              <a class="image" href="https://ieeexplore.ieee.org/document/10461070/" target="_blank" rel="noreferrer"><img src="/images/iomt.svg" alt="Abstract visual representing intelligent healthcare and incremental learning" /></a>
+              <div class="inner">
+                <p>
+                  <b>An IoMT-based Incremental Learning Framework with a Novel Feature Selection Algorithm for Intelligent Diagnosis in Smart Healthcare</b><br />
+                  Siva Sai, Kartikey Singh Bhandari, <b>Aditya Nawal</b>, Vinay Chamola, Biplab Sikdar<br />
+                  In <i>IEEE Transactions on Machine Learning in Communications and Networking</i> (2024)<br />
+                  <span class="publication-label">Incremental learning for accurate and efficient smart-healthcare diagnosis</span><br />
+                  <a href="https://ieeexplore.ieee.org/document/10461070/" target="_blank" rel="noreferrer" title="Publisher page"><i class="fas fa-file-pdf"></i><span class="label">Paper</span></a>
+                  &nbsp;
+                  <a href="https://www.researchgate.net/publication/379010168_An_IoMT-Based_Incremental_Learning_Framework_With_a_Novel_Feature_Selection_Algorithm_for_Intelligent_Diagnosis_in_Smart_Healthcare" target="_blank" rel="noreferrer" title="PDF"><i class="fas fa-globe"></i><span class="label">PDF</span></a>
+                </p>
+              </div>
+            </article>
           </div>
-          <a class="text-link" href="/cv/">More background <span>↗</span></a>
-        </article>
-      </div>
-    </section>
-
-    <section class="section-block page-shell" aria-labelledby="publications-title">
-      <div class="section-heading section-heading--row">
-        <div>
-          <div class="section-kicker"><span>03</span> PUBLICATIONS</div>
-          <h2 id="publications-title">Selected papers,<br /><em>in context.</em></h2>
         </div>
-        <a class="text-link" href="/publications/">View complete list <span>↗</span></a>
-      </div>
-      <div class="publication-list">
-        {publications.map((entry) => <PublicationRow entry={entry} />)}
-      </div>
-    </section>
+      </section>
 
-    <section class="section-block section-block--quiet page-shell" aria-labelledby="news-title">
-      <div class="split-section">
-        <div>
-          <div class="section-kicker"><span>04</span> NEWS</div>
-          <h2 id="news-title">A short<br /><em>log.</em></h2>
-        </div>
-        <div class="news-list">
-          {news.map((item) => (
-            <div class="news-item">
-              <span>{item.date}</span>
-              <p>{item.text}</p>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
+      <section id="research">
+        <div class="container">
+          <h3>Ongoing Research</h3>
+          <div class="features">
+            <article>
+              <a class="image"><img src="/images/tool-admission.png" alt="Diagram showing tool admission as a safety bottleneck" /></a>
+              <div class="inner">
+                <p>
+                  <b>Tool Admission in Language-Model Agents</b><br />
+                  <span class="research-callout">Research project</span><br />
+                  I study the decision that happens before retrieval: whether an agent admits an external tool call in the first place. This line of work examines the behavioural, mechanistic, and defensive implications of that admission gate.
+                </p>
+              </div>
+            </article>
 
-    <section class="contact-section page-shell" aria-labelledby="contact-title">
-      <div class="contact-copy">
-        <div class="section-kicker"><span>05</span> CONTACT</div>
-        <h2 id="contact-title">Open to thoughtful<br /><em>conversations.</em></h2>
-      </div>
-      <div class="contact-links">
-        <a href="mailto:aditya1nawal@gmail.com">aditya1nawal@gmail.com <span>↗</span></a>
-        <a href="https://scholar.google.com/citations?user=jUBC5FwAAAAJ&hl=en" target="_blank" rel="noreferrer">Google Scholar <span>↗</span></a>
-        <a href="https://www.linkedin.com/in/aditya-nawal-7a841719b/" target="_blank" rel="noreferrer">LinkedIn <span>↗</span></a>
-        <a href="/cv/">Curriculum vitae <span>↗</span></a>
+            <article>
+              <a class="image"><img src="/images/multilingual-safety.png" alt="Diagram showing different safety outcomes across languages" /></a>
+              <div class="inner">
+                <p>
+                  <b>Multilingual Agent Safety</b><br />
+                  <span class="research-callout">Research project</span><br />
+                  I investigate whether safety alignment survives language boundaries before and after tool use: a request may arrive in one language, retrieved evidence in another, and an agent's final behaviour in a third.
+                </p>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section id="contact">
+        <div class="container">
+          <h3>Contact</h3>
+          <p>I welcome conversations about language-model agents, multilingual AI safety, retrieval security, and research collaborations.</p>
+          <ul class="feature-icons">
+            <li class="icon solid fa-envelope"><a href="mailto:aditya1nawal@gmail.com">aditya1nawal@gmail.com</a></li>
+            <li class="icon brands fa-google-scholar"><a href="https://scholar.google.com/citations?user=jUBC5FwAAAAJ&hl=en" target="_blank" rel="noreferrer">Google Scholar</a></li>
+            <li class="icon brands fa-linkedin"><a href="https://www.linkedin.com/in/aditya-nawal-7a841719b/" target="_blank" rel="noreferrer">LinkedIn</a></li>
+            <li class="icon brands fa-github"><a href="https://github.com/aditya-nawal" target="_blank" rel="noreferrer">GitHub</a></li>
+          </ul>
+        </div>
+      </section>
+    </div>
+
+    <section id="footer">
+      <div class="container">
+        <ul class="copyright">
+          <li>&copy; Aditya Nawal. All rights reserved.</li>
+          <li>Template: <a href="https://html5up.net/read-only" target="_blank" rel="noreferrer">Read Only</a> by <a href="https://html5up.net/" target="_blank" rel="noreferrer">HTML5 UP</a>, adapted under <a href="/template-license.txt">CC BY 3.0</a>.</li>
+        </ul>
       </div>
     </section>
-  </main>
+  </div>
 </Layout>

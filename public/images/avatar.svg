@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" role="img" aria-labelledby="title desc">
+  <title id="title">Aditya Nawal monogram</title>
+  <desc id="desc">The initials AN on a muted teal background.</desc>
+  <rect width="400" height="400" fill="#4acaa8"/>
+  <circle cx="200" cy="200" r="150" fill="none" stroke="#ffffff" stroke-opacity=".45" stroke-width="2"/>
+  <path d="M94 280 183 112h34l89 168h-42l-19-39h-91l-18 39h-42Zm77-75h57l-29-58-28 58Z" fill="#fff"/>
+  <path d="M251 280V121h39l66 97v-97h37v159h-38l-67-98v98h-37Z" fill="#fff" transform="translate(-40 0) scale(.8) translate(100 38)"/>
+</svg>

@@ -1,0 +1,43 @@
+/* Aditya Nawal content adjustments for the licensed Read Only template. */
+
+#header > header .avatar {
+  width: 9em;
+}
+
+.features article .image {
+  background: #fff;
+}
+
+.features article .image img {
+  aspect-ratio: 1.35 / 1;
+  object-fit: contain;
+}
+
+.features article .inner p {
+  margin-bottom: 0;
+}
+
+.publication-label {
+  color: #888;
+  font-size: 0.8em;
+}
+
+.research-callout {
+  color: #4acaa8;
+  font-weight: 700;
+}
+
+#footer .copyright {
+  font-size: 0.75em;
+  line-height: 1.5;
+}
+
+@media screen and (max-width: 736px) {
+  #about header.major br {
+    display: block;
+  }
+
+  .features article .image img {
+    aspect-ratio: auto;
+  }
+}
