@@ -1,0 +1,111 @@
+---
+import { getCollection } from 'astro:content';
+import Layout from '../layouts/Layout.astro';
+import AgentDiagram from '../components/AgentDiagram.astro';
+import ResearchCard from '../components/ResearchCard.astro';
+import PublicationRow from '../components/PublicationRow.astro';
+import { news } from '../data/news';
+
+const research = (await getCollection('research')).sort((a, b) => a.data.number.localeCompare(b.data.number));
+const publications = (await getCollection('publications')).sort((a, b) => b.data.year.localeCompare(a.data.year));
+const featured = research.find((entry) => entry.data.featured) ?? research[0];
+---
+
+<Layout>
+  <main>
+    <section class="statement-section page-shell" aria-labelledby="statement-title">
+      <div class="section-kicker"><span>00</span> RESEARCH STATEMENT</div>
+      <div class="statement-grid">
+        <div class="statement-copy">
+          <h1 id="statement-title">I study when AI agents decide to act.</h1>
+          <p class="statement-lede">My research examines how safety changes when language-model agents use tools, retrieve information, cross language boundaries, or collaborate with other agents.</p>
+          <p class="statement-byline">Aditya Nawal<br /><span>PhD Researcher · National University of Singapore</span></p>
+        </div>
+        <AgentDiagram />
+      </div>
+    </section>
+
+    <section class="section-block page-shell" id="research" aria-labelledby="research-title">
+      <div class="section-heading">
+        <div class="section-kicker"><span>01</span> RESEARCH DIRECTIONS</div>
+        <h2 id="research-title">Three questions about<br /><em>agentic behaviour.</em></h2>
+      </div>
+      <div class="research-grid">
+        {research.map((entry) => <ResearchCard entry={entry} />)}
+      </div>
+    </section>
+
+    <section class="section-block section-block--work page-shell" id="work" aria-labelledby="work-title">
+      <div class="section-heading section-heading--row">
+        <div>
+          <div class="section-kicker"><span>02</span> SELECTED WORK</div>
+          <h2 id="work-title">Research as a set of<br /><em>inspectable systems.</em></h2>
+        </div>
+        <p class="section-aside">The projects below turn broad questions about alignment into concrete evaluations, benchmarks, and mechanisms that can be examined.</p>
+      </div>
+      <div class="work-grid">
+        {featured && <ResearchCard entry={featured} />}
+        <article class="engineering-card">
+          <div class="engineering-card__topline"><span>ENGINEERING BACKGROUND</span><span>MICROSOFT · 2022—2024</span></div>
+          <div class="engineering-card__main">
+            <div>
+              <h3>From research questions<br />to working tools.</h3>
+              <p>Before NUS, I built Azure OpenAI-assisted reasoning workflows and production tooling for cloud network diagnosis using C# and React.</p>
+            </div>
+            <div class="engineering-schematic" aria-hidden="true">
+              <span class="schematic-node">telemetry</span>
+              <span class="schematic-line"></span>
+              <span class="schematic-node schematic-node--accent">reasoning</span>
+              <span class="schematic-line"></span>
+              <span class="schematic-node">remediation</span>
+            </div>
+          </div>
+          <a class="text-link" href="/cv/">More background <span>↗</span></a>
+        </article>
+      </div>
+    </section>
+
+    <section class="section-block page-shell" aria-labelledby="publications-title">
+      <div class="section-heading section-heading--row">
+        <div>
+          <div class="section-kicker"><span>03</span> PUBLICATIONS</div>
+          <h2 id="publications-title">Selected papers,<br /><em>in context.</em></h2>
+        </div>
+        <a class="text-link" href="/publications/">View complete list <span>↗</span></a>
+      </div>
+      <div class="publication-list">
+        {publications.map((entry) => <PublicationRow entry={entry} />)}
+      </div>
+    </section>
+
+    <section class="section-block section-block--quiet page-shell" aria-labelledby="news-title">
+      <div class="split-section">
+        <div>
+          <div class="section-kicker"><span>04</span> NEWS</div>
+          <h2 id="news-title">A short<br /><em>log.</em></h2>
+        </div>
+        <div class="news-list">
+          {news.map((item) => (
+            <div class="news-item">
+              <span>{item.date}</span>
+              <p>{item.text}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section class="contact-section page-shell" aria-labelledby="contact-title">
+      <div class="contact-copy">
+        <div class="section-kicker"><span>05</span> CONTACT</div>
+        <h2 id="contact-title">Open to thoughtful<br /><em>conversations.</em></h2>
+      </div>
+      <div class="contact-links">
+        <a href="mailto:aditya1nawal@gmail.com">aditya1nawal@gmail.com <span>↗</span></a>
+        <a href="https://scholar.google.com/citations?user=jUBC5FwAAAAJ&hl=en" target="_blank" rel="noreferrer">Google Scholar <span>↗</span></a>
+        <a href="https://www.linkedin.com/in/aditya-nawal-7a841719b/" target="_blank" rel="noreferrer">LinkedIn <span>↗</span></a>
+        <a href="/cv/">Curriculum vitae <span>↗</span></a>
+      </div>
+    </section>
+  </main>
+</Layout>

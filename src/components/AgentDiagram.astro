@@ -1,0 +1,36 @@
+<figure class="agent-diagram" aria-labelledby="agent-diagram-caption">
+  <div class="diagram-kicker">THE PROBLEM SPACE</div>
+  <div class="diagram-flow">
+    <div class="diagram-node diagram-node--request">
+      <span class="diagram-node__index">01</span>
+      <strong>REQUEST</strong>
+      <small>user intent</small>
+    </div>
+    <span class="diagram-arrow" aria-hidden="true">→</span>
+    <div class="diagram-node diagram-node--agent">
+      <span class="diagram-node__index">02</span>
+      <strong>LLM AGENT</strong>
+      <small>decide to act</small>
+    </div>
+    <span class="diagram-arrow" aria-hidden="true">→</span>
+    <div class="diagram-node diagram-node--tool">
+      <span class="diagram-node__index">03</span>
+      <strong>TOOL</strong>
+      <small>retrieve · execute</small>
+    </div>
+    <span class="diagram-arrow" aria-hidden="true">→</span>
+    <div class="diagram-node diagram-node--response">
+      <span class="diagram-node__index">04</span>
+      <strong>RESPONSE</strong>
+      <small>belief · output</small>
+    </div>
+  </div>
+  <div class="diagram-notes" aria-hidden="true">
+    <span><i></i> tool admission</span>
+    <span><i></i> retrieved context</span>
+    <span><i></i> safety behaviour</span>
+  </div>
+  <figcaption id="agent-diagram-caption">
+    Safety is not only a property of the final answer. It can change at the points where an agent decides, retrieves, and acts.
+  </figcaption>
+</figure>

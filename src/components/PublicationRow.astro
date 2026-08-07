@@ -1,0 +1,27 @@
+---
+import type { CollectionEntry } from 'astro:content';
+
+interface Props {
+  entry: CollectionEntry<'publications'>;
+}
+
+const { entry } = Astro.props;
+const { data } = entry;
+---
+
+<article class="publication-row">
+  <div class="publication-row__year">{data.year}</div>
+  <div class="publication-row__content">
+    <div class="publication-row__title-line">
+      <h3>{data.title}</h3>
+      <span class="publication-kind">{data.kind}</span>
+    </div>
+    <p class="publication-authors">{data.authors}</p>
+    <p class="publication-venue">{data.venue}</p>
+    <p class="publication-summary">{data.summary}</p>
+    <div class="inline-links">
+      {data.paper && <a href={data.paper} target="_blank" rel="noreferrer">Paper <span>↗</span></a>}
+      {data.pdf && <a href={data.pdf} target="_blank" rel="noreferrer">PDF <span>↗</span></a>}
+    </div>
+  </div>
+</article>

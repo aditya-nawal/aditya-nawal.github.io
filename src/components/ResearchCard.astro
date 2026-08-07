@@ -1,0 +1,35 @@
+---
+import type { CollectionEntry } from 'astro:content';
+
+interface Props {
+  entry: CollectionEntry<'research'>;
+  compact?: boolean;
+}
+
+const { entry, compact = false } = Astro.props;
+const { data } = entry;
+---
+
+<a
+  class:list={['research-card', `research-card--${data.accent}`, { 'research-card--compact': compact }]}
+  href={`/research/${entry.id}/`}
+>
+  <div class="research-card__meta">
+    <span>{data.number} / {data.kicker}</span>
+    <span class="status-pill">{data.status}</span>
+  </div>
+  <div class="research-card__body">
+    <div>
+      <h3>{data.title}</h3>
+      <p>{data.summary}</p>
+    </div>
+    <span class="card-arrow" aria-hidden="true">↗</span>
+  </div>
+  {!compact && (
+    <div class="research-card__visual" aria-hidden="true">
+      {data.accent === 'lavender' && <><span class="visual-orbit visual-orbit--one"></span><span class="visual-orbit visual-orbit--two"></span><span class="visual-dot visual-dot--one"></span><span class="visual-dot visual-dot--two"></span></>}
+      {data.accent === 'coral' && <><span class="visual-wave visual-wave--one"></span><span class="visual-wave visual-wave--two"></span><span class="visual-wave visual-wave--three"></span></>}
+      {data.accent === 'teal' && <><span class="visual-grid-line visual-grid-line--one"></span><span class="visual-grid-line visual-grid-line--two"></span><span class="visual-grid-line visual-grid-line--three"></span><span class="visual-grid-node visual-grid-node--one"></span><span class="visual-grid-node visual-grid-node--two"></span><span class="visual-grid-node visual-grid-node--three"></span></>}
+    </div>
+  )}
+</a>

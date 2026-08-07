@@ -1,0 +1,47 @@
+---
+import { getCollection, render } from 'astro:content';
+import Layout from '../../layouts/Layout.astro';
+
+export async function getStaticPaths() {
+  const entries = await getCollection('research');
+  return entries.map((entry) => ({
+    params: { slug: entry.id },
+    props: { entry },
+  }));
+}
+
+const { entry } = Astro.props;
+const { Content } = await render(entry);
+const { data } = entry;
+---
+
+<Layout title={`${data.title} — Aditya Nawal`} description={data.summary}>
+  <main class={`project-page project-page--${data.accent}`}>
+    <section class="project-intro page-shell">
+      <a class="back-link" href="/#research">← Back to research</a>
+      <div class="project-intro__grid">
+        <div>
+          <div class="section-kicker"><span>{data.number}</span> {data.kicker}</div>
+          <h1>{data.title}</h1>
+          <p class="project-summary">{data.summary}</p>
+          <div class="project-status">{data.status}</div>
+          <div class="inline-links project-links">
+            {data.paper && <a href={data.paper} target="_blank" rel="noreferrer">Paper <span>↗</span></a>}
+            {data.pdf && <a href={data.pdf} target="_blank" rel="noreferrer">PDF <span>↗</span></a>}
+            {data.code && <a href={data.code} target="_blank" rel="noreferrer">Code <span>↗</span></a>}
+            {data.dataset && <a href={data.dataset} target="_blank" rel="noreferrer">Dataset <span>↗</span></a>}
+          </div>
+        </div>
+        <div class="project-hero-visual" aria-hidden="true">
+          <div class="project-hero-visual__label">RESEARCH QUESTION</div>
+          <p>{data.question}</p>
+          <div class="project-hero-visual__rule"></div>
+          <div class="project-hero-visual__coordinates"><span>context</span><span>action</span><span>outcome</span></div>
+        </div>
+      </div>
+    </section>
+    <article class="prose page-shell">
+      <Content />
+    </article>
+  </main>
+</Layout>

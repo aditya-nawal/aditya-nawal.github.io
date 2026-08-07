@@ -1,0 +1,92 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const experience = [
+  {
+    role: 'PhD Researcher',
+    place: 'National University of Singapore · Department of Electrical and Computer Engineering',
+    dates: 'Jan 2025 — present',
+    points: [
+      'Researching safety vulnerabilities in retrieval-augmented language-model agents and robust alignment methodologies.',
+      'Developing AgentREVEAL and HarmURLBench to analyze how retrieved context changes agentic safety.',
+      'Investigating multilingual transfer, multi-agent collusion, and mechanistic interpretability in agent workflows.',
+    ],
+  },
+  {
+    role: 'Software Development Engineer',
+    place: 'Microsoft',
+    dates: 'Jul 2022 — Dec 2024',
+    points: [
+      'Engineered Azure OpenAI-assisted reasoning workflows for automated network failure diagnosis.',
+      'Built production tooling with C# and React for internal cloud infrastructure services.',
+    ],
+  },
+  {
+    role: 'Software Development Intern',
+    place: 'Microsoft',
+    dates: 'Jan 2022 — Jun 2022',
+    points: [
+      'Designed a centralized internal service marketplace to improve tool discovery and cloud-service usage.',
+    ],
+  },
+  {
+    role: 'Software Development Intern',
+    place: 'Akamai Technologies',
+    dates: 'May 2021 — Jul 2021',
+    points: [
+      'Developed security tooling for DNS routing, packet-handling integrity, and simulated threat scenarios.',
+    ],
+  },
+];
+---
+
+<Layout title="CV — Aditya Nawal" description="Curriculum vitae and background of Aditya Nawal.">
+  <main>
+    <section class="page-heading page-shell">
+      <a class="back-link" href="/">← Back home</a>
+      <div class="section-kicker"><span>06</span> CURRICULUM VITAE</div>
+      <h1>Researcher,<br /><em>engineer, builder.</em></h1>
+      <p>PhD researcher at NUS studying safety and security in language-model agents, with an engineering background in cloud infrastructure and applied LLM systems.</p>
+      <a class="button-link" href="/cv.pdf" download>Download full CV <span>↓</span></a>
+    </section>
+
+    <section class="section-block page-shell cv-section">
+      <div class="section-kicker"><span>01</span> EXPERIENCE</div>
+      <div class="timeline">
+        {experience.map((item) => (
+          <article class="timeline-item">
+            <div class="timeline-item__date">{item.dates}</div>
+            <div class="timeline-item__content">
+              <h2>{item.role}</h2>
+              <p class="timeline-item__place">{item.place}</p>
+              <ul>
+                {item.points.map((point) => <li>{point}</li>)}
+              </ul>
+            </div>
+          </article>
+        ))}
+      </div>
+    </section>
+
+    <section class="section-block page-shell cv-two-column">
+      <div>
+        <div class="section-kicker"><span>02</span> EDUCATION</div>
+        <div class="simple-record">
+          <h2>National University of Singapore</h2>
+          <p>PhD · Electrical and Computer Engineering</p>
+          <span>Jan 2025 — Jan 2029</span>
+        </div>
+        <div class="simple-record">
+          <h2>BITS Pilani</h2>
+          <p>B.E. · Electronics and Electrical Engineering</p>
+          <span>Aug 2018 — Jun 2022</span>
+        </div>
+      </div>
+      <div>
+        <div class="section-kicker"><span>03</span> RESEARCH &amp; TOOLS</div>
+        <p class="skill-copy">LLM alignment · AI safety and red teaming · adversarial machine learning · mechanistic interpretability · multi-agent systems · RAG security · multilingual NLP</p>
+        <p class="skill-copy">Python · PyTorch · JAX · TensorFlow · C# · React · SQL · AutoGen · Semantic Kernel · LangChain · Hugging Face</p>
+      </div>
+    </section>
+  </main>
+</Layout>

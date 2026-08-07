@@ -1,0 +1,21 @@
+---
+import { getCollection } from 'astro:content';
+import Layout from '../layouts/Layout.astro';
+import PublicationRow from '../components/PublicationRow.astro';
+
+const publications = (await getCollection('publications')).sort((a, b) => b.data.year.localeCompare(a.data.year));
+---
+
+<Layout title="Publications — Aditya Nawal" description="Publications by Aditya Nawal on language-model agents, generative AI, and intelligent healthcare systems.">
+  <main>
+    <section class="page-heading page-shell">
+      <a class="back-link" href="/">← Back home</a>
+      <div class="section-kicker"><span>03</span> PUBLICATIONS</div>
+      <h1>Work across<br /><em>systems and safety.</em></h1>
+      <p>My current research focuses on the safety and security of language-model agents. Earlier work spans generative AI systems and intelligent healthcare.</p>
+    </section>
+    <section class="section-block page-shell publication-page-list" aria-label="Publication list">
+      {publications.map((entry) => <PublicationRow entry={entry} />)}
+    </section>
+  </main>
+</Layout>
