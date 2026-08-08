@@ -102,13 +102,13 @@ Serve `dist/` locally, capture 1440-pixel desktop and 390-pixel mobile screensho
 
 Expected: no horizontal overflow, clipped text, missing images, or overlapping sidebar content.
 
-- [ ] **Step 3: Commit and push**
+- [x] **Step 3: Commit and push**
 
 Run: `git add`, `git commit -m "Polish publication visuals and discoverability"`, and `git push origin main`.
 
 Expected: the GitHub Pages workflow completes successfully.
 
-- [ ] **Step 4: Verify production**
+- [x] **Step 4: Verify production**
 
 Request the live homepage and both new image URLs.
 
