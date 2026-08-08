@@ -45,7 +45,7 @@ import Layout from '../layouts/Layout.astro';
       <section id="news">
         <div class="container">
           <h3>Latest News</h3>
-          <ul>
+          <ul class="news-list">
             <li><strong>May 2026:</strong> Released <em>Relevance as a Vulnerability</em>, introducing AgentREVEAL and HarmURLBench for studying retrieval-induced safety degradation in LLM agents.</li>
             <li><strong>2025:</strong> Started PhD research in the Department of Electrical and Computer Engineering at NUS.</li>
             <li><strong>2024:</strong> Published work on generative image systems and incremental learning for intelligent healthcare.</li>
@@ -56,49 +56,58 @@ import Layout from '../layouts/Layout.astro';
       <section id="publications">
         <div class="container">
           <h3>Selected Publications</h3>
-          <div class="features">
-            <article>
-              <a class="image" href="https://arxiv.org/abs/2605.29224" target="_blank" rel="noreferrer"><img src="/images/retrieval-safety.png" alt="Illustration of retrieval changing an LLM agent's safety behaviour" /></a>
+          <div class="features publication-list">
+            <article class="paper-card paper-card--retrieval">
+              <div class="paper-visual">
+                <a class="image" href="https://arxiv.org/abs/2605.29224" target="_blank" rel="noreferrer"><img src="/images/retrieval-safety.png" alt="Paper teaser showing how web retrieval can change an LLM agent's safety behaviour" /></a>
+                <span class="figure-source">Paper teaser figure</span>
+              </div>
               <div class="inner">
-                <p>
-                  <b>Relevance as a Vulnerability: How Web Retrieval Degrades Safety Alignment in LLM Agents</b><br />
-                  <b>Aditya Nawal</b>, Manit Baser, Mohan Gurusamy<br />
-                  In <i>arXiv preprint arXiv:2605.29224</i> (2026)<br />
-                  <span class="publication-label">AgentREVEAL · HarmURLBench · retrieval-induced safety</span><br />
-                  <a href="https://arxiv.org/pdf/2605.29224" target="_blank" rel="noreferrer" title="Paper PDF"><i class="fas fa-file-pdf"></i><span class="label">PDF</span></a>
-                  &nbsp;
-                  <a href="https://arxiv.org/abs/2605.29224" target="_blank" rel="noreferrer" title="arXiv page"><i class="fas fa-globe"></i><span class="label">Paper page</span></a>
-                </p>
+                <span class="paper-kicker">LLM agent safety · 2026</span>
+                <h4 class="paper-title">Relevance as a Vulnerability: How Web Retrieval Degrades Safety Alignment in LLM Agents</h4>
+                <p class="paper-authors"><strong>Aditya Nawal</strong>, Manit Baser, Mohan Gurusamy</p>
+                <p class="paper-venue">arXiv preprint · arXiv:2605.29224</p>
+                <p class="paper-summary">AgentREVEAL · HarmURLBench · retrieval-induced safety</p>
+                <div class="paper-links" aria-label="Links for Relevance as a Vulnerability">
+                  <a href="https://arxiv.org/pdf/2605.29224" target="_blank" rel="noreferrer"><i class="fas fa-file-pdf" aria-hidden="true"></i> PDF</a>
+                  <a href="https://arxiv.org/abs/2605.29224" target="_blank" rel="noreferrer"><i class="fas fa-external-link-alt" aria-hidden="true"></i> Paper page</a>
+                </div>
               </div>
             </article>
 
-            <article>
-              <a class="image" href="https://dl.acm.org/doi/10.1145/3689641" target="_blank" rel="noreferrer"><img src="/images/generative-ai.svg" alt="Abstract visual representing generative AI image systems" /></a>
+            <article class="paper-card paper-card--generative">
+              <div class="paper-visual">
+                <a class="image" href="https://dl.acm.org/doi/10.1145/3689641" target="_blank" rel="noreferrer"><img src="/images/generative-ai-figure-1.png" alt="Figure 1 from the paper comparing VAE, GAN, transformer, autoregressive, and diffusion architectures" /></a>
+                <span class="figure-source">Exact paper figure · Figure 1</span>
+              </div>
               <div class="inner">
-                <p>
-                  <b>Revolutionizing Visuals: The Role of Generative AI in Modern Image Generation</b><br />
-                  Gaurang Bansal, <b>Aditya Nawal</b>, Vinay Chamola, Norbert Herencsar<br />
-                  In <i>ACM Transactions on Multimedia Computing, Communications and Applications</i> (2024)<br />
-                  <span class="publication-label">Survey of modern image-generation systems and deployment trade-offs</span><br />
-                  <a href="https://dl.acm.org/doi/10.1145/3689641" target="_blank" rel="noreferrer" title="Publisher page"><i class="fas fa-file-pdf"></i><span class="label">Paper</span></a>
-                  &nbsp;
-                  <a href="https://www.researchgate.net/publication/383120612_Revolutionizing_Visuals_The_Role_of_Generative_AI_in_Modern_Image_Generation" target="_blank" rel="noreferrer" title="PDF"><i class="fas fa-globe"></i><span class="label">PDF</span></a>
-                </p>
+                <span class="paper-kicker">Generative AI · 2024</span>
+                <h4 class="paper-title">Revolutionizing Visuals: The Role of Generative AI in Modern Image Generation</h4>
+                <p class="paper-authors">Gaurang Bansal, <strong>Aditya Nawal</strong>, Vinay Chamola, Norbert Herencsar</p>
+                <p class="paper-venue">ACM Transactions on Multimedia Computing, Communications and Applications</p>
+                <p class="paper-summary">A survey of modern image-generation systems, capabilities, and deployment trade-offs.</p>
+                <div class="paper-links" aria-label="Links for Revolutionizing Visuals">
+                  <a href="https://dl.acm.org/doi/10.1145/3689641" target="_blank" rel="noreferrer"><i class="fas fa-external-link-alt" aria-hidden="true"></i> Publisher</a>
+                  <a href="https://dspace.vut.cz/bitstreams/d59c3f08-5ffc-4930-ac2c-c7df569cfcf9/download" target="_blank" rel="noreferrer"><i class="fas fa-file-pdf" aria-hidden="true"></i> PDF</a>
+                </div>
               </div>
             </article>
 
-            <article>
-              <a class="image" href="https://ieeexplore.ieee.org/document/10461070/" target="_blank" rel="noreferrer"><img src="/images/iomt.svg" alt="Abstract visual representing intelligent healthcare and incremental learning" /></a>
+            <article class="paper-card paper-card--iomt">
+              <div class="paper-visual">
+                <a class="image" href="https://ieeexplore.ieee.org/document/10461070/" target="_blank" rel="noreferrer"><img src="/images/iomt-figure-1.png" alt="Figure 1 from the paper showing the proposed IoMT incremental-learning methodology" /></a>
+                <span class="figure-source">Exact paper figure · Figure 1</span>
+              </div>
               <div class="inner">
-                <p>
-                  <b>An IoMT-based Incremental Learning Framework with a Novel Feature Selection Algorithm for Intelligent Diagnosis in Smart Healthcare</b><br />
-                  Siva Sai, Kartikey Singh Bhandari, <b>Aditya Nawal</b>, Vinay Chamola, Biplab Sikdar<br />
-                  In <i>IEEE Transactions on Machine Learning in Communications and Networking</i> (2024)<br />
-                  <span class="publication-label">Incremental learning for accurate and efficient smart-healthcare diagnosis</span><br />
-                  <a href="https://ieeexplore.ieee.org/document/10461070/" target="_blank" rel="noreferrer" title="Publisher page"><i class="fas fa-file-pdf"></i><span class="label">Paper</span></a>
-                  &nbsp;
-                  <a href="https://www.researchgate.net/publication/379010168_An_IoMT-Based_Incremental_Learning_Framework_With_a_Novel_Feature_Selection_Algorithm_for_Intelligent_Diagnosis_in_Smart_Healthcare" target="_blank" rel="noreferrer" title="PDF"><i class="fas fa-globe"></i><span class="label">PDF</span></a>
-                </p>
+                <span class="paper-kicker">Smart healthcare · 2024</span>
+                <h4 class="paper-title">An IoMT-based Incremental Learning Framework with a Novel Feature Selection Algorithm for Intelligent Diagnosis in Smart Healthcare</h4>
+                <p class="paper-authors">Siva Sai, Kartikey Singh Bhandari, <strong>Aditya Nawal</strong>, Vinay Chamola, Biplab Sikdar</p>
+                <p class="paper-venue">IEEE Transactions on Machine Learning in Communications and Networking</p>
+                <p class="paper-summary">Incremental learning for accurate and efficient diagnosis in edge-enabled smart healthcare.</p>
+                <div class="paper-links" aria-label="Links for the IoMT incremental-learning paper">
+                  <a href="https://ieeexplore.ieee.org/document/10461070/" target="_blank" rel="noreferrer"><i class="fas fa-external-link-alt" aria-hidden="true"></i> Publisher</a>
+                  <a href="https://www.ece.nus.edu.sg/stfpage/bsikdar/papers/tmlcn_healthcare_24.pdf" target="_blank" rel="noreferrer"><i class="fas fa-file-pdf" aria-hidden="true"></i> PDF</a>
+                </div>
               </div>
             </article>
           </div>
@@ -108,23 +117,23 @@ import Layout from '../layouts/Layout.astro';
       <section id="research">
         <div class="container">
           <h3>Ongoing Research</h3>
-          <div class="features">
-            <article>
+          <div class="features research-list">
+            <article class="research-card research-card--tool">
               <a class="image"><img src="/images/tool-admission.png" alt="Diagram showing tool admission as a safety bottleneck" /></a>
               <div class="inner">
                 <p>
-                  <b>Tool Admission in Language-Model Agents</b><br />
+                  <span class="research-title">Tool Admission in Language-Model Agents</span><br />
                   <span class="research-callout">Research project</span><br />
                   I study the decision that happens before retrieval: whether an agent admits an external tool call in the first place. This line of work examines the behavioural, mechanistic, and defensive implications of that admission gate.
                 </p>
               </div>
             </article>
 
-            <article>
+            <article class="research-card research-card--language">
               <a class="image"><img src="/images/multilingual-safety.png" alt="Diagram showing different safety outcomes across languages" /></a>
               <div class="inner">
                 <p>
-                  <b>Multilingual Agent Safety</b><br />
+                  <span class="research-title">Multilingual Agent Safety</span><br />
                   <span class="research-callout">Research project</span><br />
                   I investigate whether safety alignment survives language boundaries before and after tool use: a request may arrive in one language, retrieved evidence in another, and an agent's final behaviour in a third.
                 </p>

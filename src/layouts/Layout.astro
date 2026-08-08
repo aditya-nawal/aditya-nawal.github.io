@@ -10,6 +10,31 @@ const {
 } = Astro.props;
 
 const canonical = Astro.site ? new URL(Astro.url.pathname, Astro.site) : Astro.url;
+const socialImage = Astro.site ? new URL('/images/retrieval-safety.png', Astro.site) : new URL('/images/retrieval-safety.png', Astro.url);
+const personSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Person',
+  name: 'Aditya Nawal',
+  url: 'https://aditya-nawal.github.io/',
+  jobTitle: 'PhD Researcher',
+  affiliation: {
+    '@type': 'CollegeOrUniversity',
+    name: 'National University of Singapore',
+    url: 'https://www.nus.edu.sg/',
+  },
+  sameAs: [
+    'https://scholar.google.com/citations?user=jUBC5FwAAAAJ&hl=en',
+    'https://github.com/aditya-nawal',
+    'https://www.linkedin.com/in/aditya-nawal-7a841719b/',
+  ],
+  knowsAbout: [
+    'Language-model agents',
+    'AI safety',
+    'Tool use',
+    'Retrieval security',
+    'Multilingual AI safety',
+  ],
+};
 ---
 
 <!doctype html>
@@ -22,11 +47,27 @@ const canonical = Astro.site ? new URL(Astro.url.pathname, Astro.site) : Astro.u
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
     <meta name="description" content={description} />
+    <meta name="author" content="Aditya Nawal" />
+    <meta name="keywords" content="Aditya Nawal, AI safety, LLM agents, tool use, retrieval security, multilingual AI safety, NUS" />
+    <meta name="robots" content="index, follow" />
+    <meta name="theme-color" content="#2a9d8f" />
     <link rel="canonical" href={canonical} />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Aditya Nawal — Research Portfolio" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={socialImage} />
+    <meta property="og:image:alt" content="Research figure illustrating retrieval-induced safety degradation in language-model agents" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={socialImage} />
     <link rel="stylesheet" href="/assets/css/main.css" />
     <link rel="stylesheet" href="/assets/css/academicons.min.css" />
     <link rel="stylesheet" href="/template-overrides.css" />
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(personSchema)} />
     <title>{title}</title>
   </head>
   <body class="is-preload">
