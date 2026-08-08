@@ -104,13 +104,13 @@ Serve `dist/` locally, inspect desktop and mobile screenshots, and use Chromium 
 
 Expected: no horizontal overflow, missing images, clipped content, or green sidebar.
 
-- [ ] **Step 3: Commit and deploy**
+- [x] **Step 3: Commit and deploy**
 
 Commit the redesign, push `main`, and wait for the `Deploy to GitHub Pages` workflow.
 
 Expected: the workflow succeeds for the pushed commit.
 
-- [ ] **Step 4: Verify production**
+- [x] **Step 4: Verify production**
 
 Request the live homepage, profile image, exact publication figures, and sitemap.
 
