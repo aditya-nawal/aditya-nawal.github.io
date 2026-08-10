@@ -1,5 +1,6 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import SiteIcon from '../components/SiteIcon.astro';
 ---
 
 <Layout>
@@ -10,7 +11,7 @@ import Layout from '../layouts/Layout.astro';
           <a class="nature-nav__name" href="#top">Aditya Nawal</a>
           <div class="nature-nav__links">
             <a href="#about">About</a>
-            <a href="#news">News</a>
+            <a href="#career">Career</a>
             <a href="#publications">Publications</a>
             <a href="#contact">Contact</a>
             <a href="/cv.pdf" target="_blank" rel="noreferrer">CV</a>
@@ -32,10 +33,10 @@ import Layout from '../layouts/Layout.astro';
           <p class="profile-role">PhD Researcher · National University of Singapore</p>
           <p class="profile-summary">I study how language-model agents behave when they retrieve information, use external tools, and cross language boundaries—with a focus on safety failures that emerge at those interfaces.</p>
           <div class="profile-links" aria-label="Professional profiles">
-            <a href="https://scholar.google.com/citations?user=jUBC5FwAAAAJ&hl=en" target="_blank" rel="noreferrer">Scholar</a>
-            <a href="https://github.com/aditya-nawal" target="_blank" rel="noreferrer">GitHub</a>
-            <a href="https://www.linkedin.com/in/aditya-nawal-7a841719b/" target="_blank" rel="noreferrer">LinkedIn</a>
-            <a href="mailto:aditya1nawal@gmail.com">Email</a>
+            <a href="https://scholar.google.com/citations?user=jUBC5FwAAAAJ&hl=en" target="_blank" rel="noreferrer" aria-label="Google Scholar" title="Google Scholar"><SiteIcon name="scholar" /></a>
+            <a href="https://github.com/aditya-nawal" target="_blank" rel="noreferrer" aria-label="GitHub" title="GitHub"><SiteIcon name="github" /></a>
+            <a href="https://www.linkedin.com/in/aditya-nawal-7a841719b/" target="_blank" rel="noreferrer" aria-label="LinkedIn" title="LinkedIn"><SiteIcon name="linkedin" /></a>
+            <a href="mailto:adityanawal@u.nus.edu" aria-label="Email Aditya Nawal" title="adityanawal@u.nus.edu"><SiteIcon name="email" /></a>
           </div>
         </div>
       </section>
@@ -48,23 +49,65 @@ import Layout from '../layouts/Layout.astro';
         </div>
       </section>
 
-      <section class="academic-section" id="news">
-        <div class="section-heading-row">
-          <h2>News</h2>
-          <span>Recent updates</span>
+      <section class="academic-section career-section" id="career">
+        <div class="section-heading-row career-heading">
+          <h2>Career Summary</h2>
+          <span>Research · Engineering · Education</span>
         </div>
-        <div class="academic-news-list">
-          <article class="academic-news-item">
-            <time datetime="2026-05">May 2026</time>
-            <p>Released <em>Relevance as a Vulnerability</em>, introducing AgentREVEAL and HarmURLBench for studying retrieval-induced safety degradation in LLM agents.</p>
+
+        <div class="career-timeline">
+          <article class="career-entry career-entry--right">
+            <div class="career-symbol career-symbol--nus"><SiteIcon name="university" /></div>
+            <span class="career-marker" aria-hidden="true"></span>
+            <div class="career-card">
+              <time datetime="2025-01">Jan 2025 — Present</time>
+              <h3>National University of Singapore</h3>
+              <p>PhD Researcher</p>
+              <small>Electrical and Computer Engineering</small>
+            </div>
           </article>
-          <article class="academic-news-item">
-            <time datetime="2025">2025</time>
-            <p>Started PhD research in the Department of Electrical and Computer Engineering at the National University of Singapore.</p>
+
+          <article class="career-entry career-entry--left">
+            <div class="career-card">
+              <time datetime="2022-07">Jul 2022 — Dec 2024</time>
+              <h3>Microsoft</h3>
+              <p>Software Development Engineer</p>
+              <small>Azure network diagnosis and AI-assisted tooling</small>
+            </div>
+            <span class="career-marker" aria-hidden="true"></span>
+            <div class="career-symbol career-symbol--microsoft"><SiteIcon name="microsoft" /></div>
           </article>
-          <article class="academic-news-item">
-            <time datetime="2024">2024</time>
-            <p>Published work on generative image systems and incremental learning for intelligent healthcare.</p>
+
+          <article class="career-entry career-entry--right">
+            <div class="career-symbol career-symbol--microsoft"><SiteIcon name="microsoft" /></div>
+            <span class="career-marker" aria-hidden="true"></span>
+            <div class="career-card">
+              <time datetime="2022-01">Jan 2022 — Jun 2022</time>
+              <h3>Microsoft</h3>
+              <p>Software Development Intern</p>
+              <small>Internal cloud-service marketplace</small>
+            </div>
+          </article>
+
+          <article class="career-entry career-entry--left">
+            <div class="career-card">
+              <time datetime="2021-05">May 2021 — Jul 2021</time>
+              <h3>Akamai Technologies</h3>
+              <p>Software Development Intern</p>
+              <small>Network-security testing and threat simulation</small>
+            </div>
+            <span class="career-marker" aria-hidden="true"></span>
+            <div class="career-symbol career-symbol--akamai"><SiteIcon name="globe" /></div>
+          </article>
+
+          <article class="career-entry career-entry--right">
+            <div class="career-symbol career-symbol--bits"><SiteIcon name="degree" /></div>
+            <span class="career-marker" aria-hidden="true"></span>
+            <div class="career-card">
+              <time datetime="2018-08">Aug 2018 — Jun 2022</time>
+              <h3>BITS Pilani</h3>
+              <p>B.E. Electronics and Electrical Engineering</p>
+            </div>
           </article>
         </div>
       </section>
@@ -142,7 +185,7 @@ import Layout from '../layouts/Layout.astro';
         <h2>Contact</h2>
         <div>
           <p>I welcome conversations about language-model agents, retrieval security, multilingual AI safety, and research collaborations.</p>
-          <a class="email-link" href="mailto:aditya1nawal@gmail.com">aditya1nawal@gmail.com</a>
+          <a class="email-link" href="mailto:adityanawal@u.nus.edu"><SiteIcon name="email" /> <span>adityanawal@u.nus.edu</span></a>
         </div>
       </section>
 
