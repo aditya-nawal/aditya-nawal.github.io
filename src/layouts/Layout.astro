@@ -8,7 +8,7 @@ interface Props {
 
 const {
   title = 'Aditya Nawal — Research Portfolio',
-  description = 'Research portfolio of Aditya Nawal, PhD researcher at the National University of Singapore.',
+  description = 'Research portfolio of Aditya Nawal, PhD student at the National University of Singapore.',
 } = Astro.props;
 
 const canonical = Astro.site ? new URL(Astro.url.pathname, Astro.site) : Astro.url;
@@ -20,7 +20,7 @@ const personSchema = {
   url: 'https://aditya-nawal.github.io/',
   image: 'https://aditya-nawal.github.io/images/profile.jpg',
   email: 'mailto:adityanawal@u.nus.edu',
-  jobTitle: 'PhD Researcher',
+  jobTitle: 'PhD Student',
   affiliation: {
     '@type': 'CollegeOrUniversity',
     name: 'National University of Singapore',
