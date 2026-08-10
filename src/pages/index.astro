@@ -4,12 +4,31 @@ import Layout from '../layouts/Layout.astro';
 
 <Layout>
   <main class="academic-site">
+    <header class="nature-header" aria-labelledby="profile-name">
+      <nav class="nature-nav" aria-label="Primary navigation">
+        <div class="nature-nav__inner">
+          <a class="nature-nav__name" href="#top">Aditya Nawal</a>
+          <div class="nature-nav__links">
+            <a href="#about">About</a>
+            <a href="#news">News</a>
+            <a href="#publications">Publications</a>
+            <a href="#contact">Contact</a>
+            <a href="/cv.pdf" target="_blank" rel="noreferrer">CV</a>
+          </div>
+        </div>
+      </nav>
+
+      <div class="nature-header__content" id="top">
+        <p class="nature-header__eyebrow">Language-model agents · AI safety · security</p>
+        <h1 id="profile-name">Aditya Nawal</h1>
+        <blockquote>Lord is causelessly merciful and we are causelessly rebellious</blockquote>
+      </div>
+    </header>
+
     <div class="academic-shell">
-      <section class="profile-masthead" aria-labelledby="profile-name">
+      <section class="profile-intro" aria-label="Introduction">
         <img class="profile-photo" src="/images/profile.jpg" alt="Aditya Nawal" width="200" height="200" />
         <div class="profile-copy">
-          <p class="profile-eyebrow">Language-model agents · AI safety · security</p>
-          <h1 id="profile-name">Aditya Nawal</h1>
           <p class="profile-role">PhD Researcher · National University of Singapore</p>
           <p class="profile-summary">I study how language-model agents behave when they retrieve information, use external tools, and cross language boundaries—with a focus on safety failures that emerge at those interfaces.</p>
           <div class="profile-links" aria-label="Professional profiles">
@@ -20,14 +39,6 @@ import Layout from '../layouts/Layout.astro';
           </div>
         </div>
       </section>
-
-      <nav class="section-tabs" aria-label="Page sections">
-        <a href="#about">About</a>
-        <a href="#news">News</a>
-        <a href="#publications">Publications</a>
-        <a href="#contact">Contact</a>
-        <a href="/cv.pdf" target="_blank" rel="noreferrer">CV</a>
-      </nav>
 
       <section class="academic-section about-section" id="about">
         <h2>About</h2>
