@@ -2142,6 +2142,18 @@ em {
   font-size: 1.55rem;
 }
 
+.career-symbol img {
+  display: block;
+  width: 38px;
+  height: 38px;
+  object-fit: contain;
+}
+
+.career-symbol--akamai img {
+  width: 39px;
+  height: 30px;
+}
+
 .career-entry--left .career-symbol {
   grid-column: 3;
   justify-self: start;
@@ -2217,6 +2229,16 @@ em {
     margin: 7px 0 0;
     border-radius: 11px;
     font-size: 1.35rem;
+  }
+
+  .career-symbol img {
+    width: 34px;
+    height: 34px;
+  }
+
+  .career-symbol--akamai img {
+    width: 35px;
+    height: 27px;
   }
 
   .career-entry--left .career-card,
