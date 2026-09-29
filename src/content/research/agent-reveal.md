@@ -4,7 +4,7 @@ kicker: RETRIEVAL-INDUCED SAFETY
 number: '01'
 accent: lavender
 featured: true
-status: arXiv preprint · 2026
+status: Findings of EMNLP 2026
 summary: How web retrieval can degrade safety alignment in language-model agents — and why relevance itself can become part of the attack surface.
 question: When retrieved context is relevant, can relevance itself become a safety vulnerability?
 paper: https://arxiv.org/abs/2605.29224

@@ -3,10 +3,12 @@ name: Deploy to GitHub Pages
 on:
   push:
     branches: [main]
+  schedule:
+    - cron: '17 * * * *'
   workflow_dispatch:
 
 permissions:
-  contents: read
+  contents: write
   pages: write
   id-token: write
 
@@ -21,17 +23,56 @@ jobs:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
-      - name: Checkout
+      - name: Checkout site
         uses: actions/checkout@v4
 
-      - name: Setup Node
+      - name: Fetch latest CV source from Overleaf
+        env:
+          OVERLEAF_TOKEN: ${{ secrets.OVERLEAF_TOKEN }}
+        run: |
+          if [ -z "$OVERLEAF_TOKEN" ]; then
+            echo "Repository secret OVERLEAF_TOKEN is required to sync the CV." >&2
+            exit 1
+          fi
+          cat > "$RUNNER_TEMP/overleaf-askpass" <<'ASKPASS'
+          #!/bin/sh
+          printf '%s\n' "$OVERLEAF_TOKEN"
+          ASKPASS
+          chmod 700 "$RUNNER_TEMP/overleaf-askpass"
+          GIT_ASKPASS="$RUNNER_TEMP/overleaf-askpass" \
+          GIT_ASKPASS_REQUIRE=force \
+          GIT_TERMINAL_PROMPT=0 \
+            git -c credential.helper= clone --depth 1 \
+              https://git@git.overleaf.com/655ad62aab61f01b4671b67e \
+              "$GITHUB_WORKSPACE/.cv-source"
+
+      - name: Compile latest Overleaf CV
+        uses: xu-cheng/latex-action@v3
+        with:
+          root_file: main.tex
+          texlive_version: '2025'
+          working_directory: ${{ github.workspace }}/.cv-source
+          args: -pdf -halt-on-error -file-line-error -interaction=nonstopmode
+
+      - name: Install site dependencies
         uses: actions/setup-node@v4
         with:
           node-version: 22
           cache: npm
+      - run: npm ci
 
-      - name: Install dependencies
-        run: npm ci
+      - name: Use the latest CV PDF
+        run: cp "$GITHUB_WORKSPACE/.cv-source/main.pdf" public/cv.pdf
+
+      - name: Save refreshed CV PDF
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add public/cv.pdf
+          if ! git diff --cached --quiet; then
+            git commit -m "Sync CV PDF from Overleaf"
+            git push
+          fi
 
       - name: Build site
         run: npm run build
