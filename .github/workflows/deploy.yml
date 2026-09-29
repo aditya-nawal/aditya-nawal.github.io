@@ -27,6 +27,7 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Fetch latest CV source from Overleaf
+        id: overleaf
         env:
           OVERLEAF_TOKEN: ${{ secrets.OVERLEAF_TOKEN }}
         run: |
@@ -45,8 +46,20 @@ jobs:
             git -c credential.helper= clone --depth 1 \
               https://git@git.overleaf.com/655ad62aab61f01b4671b67e \
               "$GITHUB_WORKSPACE/.cv-source"
+          revision=$(git -C "$GITHUB_WORKSPACE/.cv-source" rev-parse HEAD)
+          previous_revision=""
+          if [ -f .overleaf-cv-revision ]; then
+            previous_revision=$(cat .overleaf-cv-revision)
+          fi
+          echo "revision=$revision" >> "$GITHUB_OUTPUT"
+          if [ "$revision" = "$previous_revision" ]; then
+            echo "cv_changed=false" >> "$GITHUB_OUTPUT"
+          else
+            echo "cv_changed=true" >> "$GITHUB_OUTPUT"
+          fi
 
       - name: Compile latest Overleaf CV
+        if: steps.overleaf.outputs.cv_changed == 'true'
         uses: xu-cheng/latex-action@v3
         with:
           root_file: main.tex
@@ -54,37 +67,50 @@ jobs:
           working_directory: ${{ github.workspace }}/.cv-source
           args: -pdf -halt-on-error -file-line-error -interaction=nonstopmode
 
-      - name: Install site dependencies
-        uses: actions/setup-node@v4
-        with:
-          node-version: 22
-          cache: npm
-      - run: npm ci
-
       - name: Use the latest CV PDF
+        if: steps.overleaf.outputs.cv_changed == 'true'
         run: cp "$GITHUB_WORKSPACE/.cv-source/main.pdf" public/cv.pdf
 
-      - name: Save refreshed CV PDF
+      - name: Save refreshed CV and revision
+        if: steps.overleaf.outputs.cv_changed == 'true'
+        env:
+          OVERLEAF_REVISION: ${{ steps.overleaf.outputs.revision }}
         run: |
+          printf '%s\n' "$OVERLEAF_REVISION" > .overleaf-cv-revision
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add public/cv.pdf
+          git add public/cv.pdf .overleaf-cv-revision
           if ! git diff --cached --quiet; then
             git commit -m "Sync CV PDF from Overleaf"
             git push
           fi
 
+      - name: Install site dependencies
+        if: github.event_name != 'schedule' || steps.overleaf.outputs.cv_changed == 'true'
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install dependencies
+        if: github.event_name != 'schedule' || steps.overleaf.outputs.cv_changed == 'true'
+        run: npm ci
+
       - name: Build site
+        if: github.event_name != 'schedule' || steps.overleaf.outputs.cv_changed == 'true'
         run: npm run build
 
       - name: Configure Pages
+        if: github.event_name != 'schedule' || steps.overleaf.outputs.cv_changed == 'true'
         uses: actions/configure-pages@v5
 
       - name: Upload artifact
+        if: github.event_name != 'schedule' || steps.overleaf.outputs.cv_changed == 'true'
         uses: actions/upload-pages-artifact@v3
         with:
           path: ./dist
 
       - name: Deploy to Pages
+        if: github.event_name != 'schedule' || steps.overleaf.outputs.cv_changed == 'true'
         id: deployment
         uses: actions/deploy-pages@v4
