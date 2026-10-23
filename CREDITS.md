@@ -17,7 +17,8 @@ No Jekyll templates, third-party profile images, or publication assets from thos
 
 The publication rows use figures from papers co-authored by Aditya Nawal:
 
-- **Relevance as a Vulnerability** — paper teaser from the authors' project source.
+- **Before Retrieval Begins**, **Disentangling Language Effects on Tool Admission and Post-Retrieval Safety** and **Relevance as a Vulnerability** — Figure 1 of each paper, taken from the authors' paper source files (Relevance cropped to the drawing).
+- **The Tokens Remember** — Figure 1 from the [arXiv HTML version](https://arxiv.org/html/2609.29045v1).
 - **Revolutionizing Visuals** — Figure 1 from the [published paper](https://doi.org/10.1145/3689641), accessed through the [Brno University of Technology repository](https://dspace.vut.cz/items/83d8a474-cd4e-4215-8b36-091f26fb75fd).
 - **An IoMT-Based Incremental Learning Framework** — Figure 1 from the [published paper](https://doi.org/10.1109/TMLCN.2024.3374253), accessed through the [NUS author copy](https://www.ece.nus.edu.sg/stfpage/bsikdar/papers/tmlcn_healthcare_24.pdf).
 

@@ -45,7 +45,7 @@ const publications = [
     summary:
       'Tool-safety work mostly examines what happens after an agent calls a tool. We study the earlier decision to make the call, which request factors drive it, and whether written refusals reflect it.',
     venue: 'arXiv 2026',
-    image: '/images/tool-admission.png',
+    image: '/images/before-retrieval-begins.png',
     page: { label: 'arXiv', href: 'https://arxiv.org/abs/2610.23071' },
     pdf: 'https://arxiv.org/pdf/2610.23071',
   },
@@ -55,7 +55,7 @@ const publications = [
     summary:
       'Varying the request, page, and response languages across ten models and seven languages, we separate how language changes tool admission from how it changes harmfulness after retrieval.',
     venue: 'arXiv 2026',
-    image: '/images/multilingual-safety.png',
+    image: '/images/disentangling-language.png',
     page: { label: 'arXiv', href: 'https://arxiv.org/abs/2610.23093' },
     pdf: 'https://arxiv.org/pdf/2610.23093',
   },
@@ -74,7 +74,7 @@ const publications = [
     authors: ['Aditya Nawal', 'Manit Baser', 'Mohan Gurusamy'],
     summary: 'We study how incorporating web retrieval can weaken safety alignment in language-model agents.',
     venue: 'EMNLP 2026 Findings',
-    image: '/images/retrieval-safety.png',
+    image: '/images/relevance-as-a-vulnerability.png',
     page: { label: 'arXiv', href: 'https://arxiv.org/abs/2605.29224' },
     pdf: 'https://arxiv.org/pdf/2605.29224',
   },
@@ -118,8 +118,8 @@ const publications = [
 
     <nav class="tabs" aria-label="Primary navigation">
       <a href="#about">About</a>
-      <a href="#career">Career</a>
       <a href="#publications">Publications</a>
+      <a href="#career">Career</a>
       <a href="#contact">Contact</a>
       <a class="tabs__cv" href="/cv.pdf" target="_blank" rel="noreferrer">CV</a>
     </nav>
@@ -130,26 +130,6 @@ const publications = [
         <p>I am a PhD researcher in Electrical and Computer Engineering at NUS. My research examines the safety and security of language-model agents, particularly how retrieval and tool use alter model behaviour and how these effects transfer across languages.</p>
         <p>Before starting my PhD, I was a Software Development Engineer at Microsoft, where I built Azure OpenAI-assisted reasoning workflows and production tooling for cloud network diagnosis.</p>
       </div>
-    </section>
-
-    <section class="section" id="career">
-      <h2 class="section__title">Career Summary</h2>
-      <ol class="timeline">
-        {career.map((job) => (
-          <li class="job">
-            <span class="job__logo">
-              {'icon' in job ? <SiteIcon name={job.icon} /> : <img src={job.logo} alt="" width="36" height="36" loading="lazy" />}
-            </span>
-            <div class="job__card">
-              <div>
-                <h3>{job.org}</h3>
-                <p>{job.role}</p>
-              </div>
-              <span class="job__period">{job.period}</span>
-            </div>
-          </li>
-        ))}
-      </ol>
     </section>
 
     <section class="section" id="publications">
@@ -179,6 +159,25 @@ const publications = [
                 <a class="pill-link" href={pub.pdf} target="_blank" rel="noreferrer">PDF</a>
                 <a class="pill-link" href={pub.page.href} target="_blank" rel="noreferrer">{pub.page.label}</a>
               </div>
+            </div>
+          </article>
+        ))}
+      </div>
+    </section>
+
+    <section class="section" id="career">
+      <h2 class="section__title">Career Summary</h2>
+      <div class="career">
+        {career.map((job, i) => (
+          <article class={i % 2 === 0 ? 'career__entry career__entry--right' : 'career__entry career__entry--left'}>
+            <span class="career__symbol">
+              {'icon' in job ? <SiteIcon name={job.icon} /> : <img src={job.logo} alt="" width="36" height="36" loading="lazy" />}
+            </span>
+            <span class="career__marker" aria-hidden="true"></span>
+            <div class="career__card">
+              <time>{job.period}</time>
+              <h3>{job.org}</h3>
+              <p>{job.role}</p>
             </div>
           </article>
         ))}
