@@ -1,191 +1,219 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import SiteIcon from '../components/SiteIcon.astro';
+import '../styles/home.css';
+
+const scholarUrl = 'https://scholar.google.com/citations?user=jUBC5FwAAAAJ&hl=en';
+
+const career = [
+  {
+    period: 'Jan 2025 — Present',
+    org: 'National University of Singapore',
+    role: 'PhD Researcher · Electrical and Computer Engineering',
+    logo: '/images/organizations/nus.svg',
+  },
+  {
+    period: 'Jul 2022 — Dec 2024',
+    org: 'Microsoft',
+    role: 'Software Development Engineer',
+    icon: 'microsoft',
+  },
+  {
+    period: 'Jan 2022 — Jun 2022',
+    org: 'Microsoft',
+    role: 'Software Development Intern',
+    icon: 'microsoft',
+  },
+  {
+    period: 'May 2021 — Jul 2021',
+    org: 'Akamai Technologies',
+    role: 'Software Development Intern',
+    logo: '/images/organizations/akamai.svg',
+  },
+  {
+    period: 'Aug 2018 — Jun 2022',
+    org: 'BITS Pilani',
+    role: 'B.E. Electronics and Electrical Engineering',
+    logo: '/images/organizations/bits-pilani.svg',
+  },
+] as const;
+
+const publications = [
+  {
+    title: 'Before Retrieval Begins: Safety and Tool-Use Decisions in LLM Agents',
+    authors: ['Aditya Nawal', 'Manit Baser', 'Mohan Gurusamy'],
+    summary:
+      'Tool-safety work mostly examines what happens after an agent calls a tool. We study the earlier decision to make the call, which request factors drive it, and whether written refusals reflect it.',
+    venue: 'arXiv 2026',
+    image: '/images/tool-admission.png',
+    page: { label: 'arXiv', href: 'https://arxiv.org/abs/2610.23071' },
+    pdf: 'https://arxiv.org/pdf/2610.23071',
+  },
+  {
+    title: 'Disentangling Language Effects on Tool Admission and Post-Retrieval Safety',
+    authors: ['Aditya Nawal', 'Manit Baser', 'Mohan Gurusamy'],
+    summary:
+      'Varying the request, page, and response languages across ten models and seven languages, we separate how language changes tool admission from how it changes harmfulness after retrieval.',
+    venue: 'arXiv 2026',
+    image: '/images/multilingual-safety.png',
+    page: { label: 'arXiv', href: 'https://arxiv.org/abs/2610.23093' },
+    pdf: 'https://arxiv.org/pdf/2610.23093',
+  },
+  {
+    title: 'The Tokens Remember: When Tokenization Bypasses Knowledge Editing and Unlearning',
+    authors: ['Manit Baser', 'Aditya Nawal', 'Dinil Mon Divakaran', 'Mohan Gurusamy'],
+    summary:
+      'Different valid tokenizations of the same text can bypass knowledge edits and unlearning in open-weight models. We introduce Toketive, an attack that detects edited facts and recovers pre-edit answers using only the released model.',
+    venue: 'arXiv 2026',
+    image: '/images/tokens-remember.png',
+    page: { label: 'arXiv', href: 'https://arxiv.org/abs/2609.29045' },
+    pdf: 'https://arxiv.org/pdf/2609.29045',
+  },
+  {
+    title: 'Relevance as a Vulnerability: How Web Retrieval Degrades Safety Alignment in LLM Agents',
+    authors: ['Aditya Nawal', 'Manit Baser', 'Mohan Gurusamy'],
+    summary: 'We study how incorporating web retrieval can weaken safety alignment in language-model agents.',
+    venue: 'EMNLP 2026 Findings',
+    image: '/images/retrieval-safety.png',
+    page: { label: 'arXiv', href: 'https://arxiv.org/abs/2605.29224' },
+    pdf: 'https://arxiv.org/pdf/2605.29224',
+  },
+  {
+    title: 'Revolutionizing Visuals: The Role of Generative AI in Modern Image Generation',
+    authors: ['Gaurang Bansal', 'Aditya Nawal', 'Vinay Chamola', 'Norbert Herencsar'],
+    summary: 'A comprehensive study of modern generative image systems, their capabilities, limitations, and deployment trade-offs.',
+    venue: 'ACM TOMM 2024',
+    image: '/images/generative-ai-figure-1.png',
+    page: { label: 'Publisher', href: 'https://dl.acm.org/doi/10.1145/3689641' },
+    pdf: 'https://dspace.vut.cz/bitstreams/d59c3f08-5ffc-4930-ac2c-c7df569cfcf9/download',
+  },
+  {
+    title: 'An IoMT-based Incremental Learning Framework with a Novel Feature Selection Algorithm for Intelligent Diagnosis in Smart Healthcare',
+    authors: ['Siva Sai', 'Kartikey Singh Bhandari', 'Aditya Nawal', 'Vinay Chamola', 'Biplab Sikdar'],
+    summary: 'An edge-enabled incremental-learning framework for accurate and efficient diagnosis in smart healthcare.',
+    venue: 'IEEE TMLCN 2024',
+    image: '/images/iomt-figure-1.png',
+    page: { label: 'Publisher', href: 'https://ieeexplore.ieee.org/document/10461070/' },
+    pdf: 'https://www.ece.nus.edu.sg/stfpage/bsikdar/papers/tmlcn_healthcare_24.pdf',
+  },
+];
 ---
 
 <Layout>
-  <main class="academic-site">
-    <header class="nature-header" aria-labelledby="profile-name">
-      <nav class="nature-nav" aria-label="Primary navigation">
-        <div class="nature-nav__inner">
-          <div class="nature-nav__links">
-            <a href="#about">About</a>
-            <a href="#career">Career</a>
-            <a href="#publications">Publications</a>
-            <a href="#contact">Contact</a>
-            <a href="/cv.pdf" target="_blank" rel="noreferrer">CV</a>
-          </div>
+  <main class="home">
+    <header class="hero" id="top">
+      <img class="hero__photo" src="/images/profile.jpg" alt="Aditya Nawal" width="200" height="200" fetchpriority="high" />
+      <div class="hero__copy">
+        <p class="hero__eyebrow">Language-model agents · AI safety · Security</p>
+        <h1>Aditya Nawal</h1>
+        <p class="hero__quote">A grateful heart is a happy heart</p>
+        <p class="hero__role">PhD Researcher · National University of Singapore</p>
+        <div class="hero__links" aria-label="Professional profiles">
+          <a href={scholarUrl} target="_blank" rel="noreferrer" aria-label="Google Scholar" title="Google Scholar"><SiteIcon name="scholar" /></a>
+          <a href="https://www.linkedin.com/in/aditya-nawal-7a841719b/" target="_blank" rel="noreferrer" aria-label="LinkedIn" title="LinkedIn"><SiteIcon name="linkedin" /></a>
+          <a href="mailto:adityanawal@u.nus.edu" aria-label="Email Aditya Nawal" title="adityanawal@u.nus.edu"><SiteIcon name="email" /></a>
         </div>
-      </nav>
-
-      <div class="nature-header__content" id="top">
-        <p class="nature-header__eyebrow">Language-model agents · AI safety · security</p>
-        <h1 id="profile-name">Aditya Nawal</h1>
-        <blockquote>A grateful heart is a happy heart</blockquote>
       </div>
     </header>
 
-    <div class="academic-shell">
-      <section class="profile-intro" aria-label="Introduction">
-        <img class="profile-photo" src="/images/profile.jpg" alt="Aditya Nawal" width="200" height="200" />
-        <div class="profile-copy">
-          <p class="profile-role">PhD Researcher · National University of Singapore</p>
-          <div class="profile-links" aria-label="Professional profiles">
-            <a href="https://scholar.google.com/citations?user=jUBC5FwAAAAJ&hl=en" target="_blank" rel="noreferrer" aria-label="Google Scholar" title="Google Scholar"><SiteIcon name="scholar" /></a>
-            <a href="https://www.linkedin.com/in/aditya-nawal-7a841719b/" target="_blank" rel="noreferrer" aria-label="LinkedIn" title="LinkedIn"><SiteIcon name="linkedin" /></a>
-            <a href="mailto:adityanawal@u.nus.edu" aria-label="Email Aditya Nawal" title="adityanawal@u.nus.edu"><SiteIcon name="email" /></a>
-          </div>
-        </div>
-      </section>
+    <nav class="tabs" aria-label="Primary navigation">
+      <a href="#about">About</a>
+      <a href="#career">Career</a>
+      <a href="#publications">Publications</a>
+      <a href="#contact">Contact</a>
+      <a class="tabs__cv" href="/cv.pdf" target="_blank" rel="noreferrer">CV</a>
+    </nav>
 
-      <section class="academic-section about-section" id="about">
-        <h2>About</h2>
-        <div class="about-copy">
-          <p>I am a PhD researcher in Electrical and Computer Engineering at NUS. My research examines the safety and security of language-model agents, particularly how retrieval and tool use alter model behaviour and how these effects transfer across languages.</p>
-          <p>Before starting my PhD, I was a Software Development Engineer at Microsoft, where I built Azure OpenAI-assisted reasoning workflows and production tooling for cloud network diagnosis.</p>
-        </div>
-      </section>
+    <section class="section" id="about">
+      <h2 class="section__title">About</h2>
+      <div class="card about">
+        <p>I am a PhD researcher in Electrical and Computer Engineering at NUS. My research examines the safety and security of language-model agents, particularly how retrieval and tool use alter model behaviour and how these effects transfer across languages.</p>
+        <p>Before starting my PhD, I was a Software Development Engineer at Microsoft, where I built Azure OpenAI-assisted reasoning workflows and production tooling for cloud network diagnosis.</p>
+      </div>
+    </section>
 
-      <section class="academic-section career-section" id="career">
-        <div class="section-heading-row career-heading">
-          <h2>Career Summary</h2>
-          <span>Research · Engineering · Education</span>
-        </div>
-
-        <div class="career-timeline">
-          <article class="career-entry career-entry--right">
-            <div class="career-symbol career-symbol--nus"><img src="/images/organizations/nus.svg" alt="National University of Singapore logo" /></div>
-            <span class="career-marker" aria-hidden="true"></span>
-            <div class="career-card">
-              <time datetime="2025-01">Jan 2025 — Present</time>
-              <h3>National University of Singapore</h3>
-              <p>PhD Researcher · Electrical and Computer Engineering</p>
+    <section class="section" id="career">
+      <h2 class="section__title">Career Summary</h2>
+      <ol class="timeline">
+        {career.map((job) => (
+          <li class="job">
+            <span class="job__logo">
+              {'icon' in job ? <SiteIcon name={job.icon} /> : <img src={job.logo} alt="" width="36" height="36" loading="lazy" />}
+            </span>
+            <div class="job__card">
+              <div>
+                <h3>{job.org}</h3>
+                <p>{job.role}</p>
+              </div>
+              <span class="job__period">{job.period}</span>
             </div>
-          </article>
+          </li>
+        ))}
+      </ol>
+    </section>
 
-          <article class="career-entry career-entry--left">
-            <div class="career-card">
-              <time datetime="2022-07">Jul 2022 — Dec 2024</time>
-              <h3>Microsoft</h3>
-              <p>Software Development Engineer</p>
-            </div>
-            <span class="career-marker" aria-hidden="true"></span>
-            <div class="career-symbol career-symbol--microsoft"><SiteIcon name="microsoft" /></div>
-          </article>
-
-          <article class="career-entry career-entry--right">
-            <div class="career-symbol career-symbol--microsoft"><SiteIcon name="microsoft" /></div>
-            <span class="career-marker" aria-hidden="true"></span>
-            <div class="career-card">
-              <time datetime="2022-01">Jan 2022 — Jun 2022</time>
-              <h3>Microsoft</h3>
-              <p>Software Development Intern</p>
-            </div>
-          </article>
-
-          <article class="career-entry career-entry--left">
-            <div class="career-card">
-              <time datetime="2021-05">May 2021 — Jul 2021</time>
-              <h3>Akamai Technologies</h3>
-              <p>Software Development Intern</p>
-            </div>
-            <span class="career-marker" aria-hidden="true"></span>
-            <div class="career-symbol career-symbol--akamai"><img src="/images/organizations/akamai.svg" alt="Akamai logo" /></div>
-          </article>
-
-          <article class="career-entry career-entry--right">
-            <div class="career-symbol career-symbol--bits"><img src="/images/organizations/bits-pilani.svg" alt="BITS Pilani logo" /></div>
-            <span class="career-marker" aria-hidden="true"></span>
-            <div class="career-card">
-              <time datetime="2018-08">Aug 2018 — Jun 2022</time>
-              <h3>BITS Pilani</h3>
-              <p>B.E. Electronics and Electrical Engineering</p>
-            </div>
-          </article>
-        </div>
-      </section>
-
-      <section class="academic-section publications-section" id="publications">
-        <div class="section-heading-row publication-heading">
-          <div>
-            <h2>Selected Publications</h2>
-            <p>Figures shown below are taken directly from the corresponding papers.</p>
-          </div>
-          <a class="all-publications-link" href="https://scholar.google.com/citations?user=jUBC5FwAAAAJ&hl=en" target="_blank" rel="noreferrer">Google Scholar ↗</a>
-        </div>
-
-        <div class="academic-publications">
-          <article class="academic-publication">
-            <figure class="academic-publication__figure">
-              <a href="https://arxiv.org/abs/2605.29224" target="_blank" rel="noreferrer">
-                <img src="/images/retrieval-safety.png" alt="Paper teaser showing web retrieval changing an LLM agent's safety behaviour" />
-              </a>
-              <figcaption>Paper teaser</figcaption>
-            </figure>
-            <div class="academic-publication__info">
-              <h3><a href="https://arxiv.org/abs/2605.29224" target="_blank" rel="noreferrer">Relevance as a Vulnerability: How Web Retrieval Degrades Safety Alignment in LLM Agents</a></h3>
-              <p class="academic-publication__authors"><strong>Aditya Nawal</strong>, Manit Baser, Mohan Gurusamy</p>
-              <p class="academic-publication__summary">We study how incorporating web retrieval can weaken safety alignment in language-model agents.</p>
-              <div class="academic-publication__actions">
-                <span class="venue-badge">EMNLP 2026 FINDINGS</span>
-                <a class="publication-button" href="https://arxiv.org/pdf/2605.29224" target="_blank" rel="noreferrer">PDF</a>
-                <a class="publication-button" href="https://arxiv.org/abs/2605.29224" target="_blank" rel="noreferrer">Paper Page</a>
+    <section class="section" id="publications">
+      <div class="section__head">
+        <h2 class="section__title">Selected Publications</h2>
+        <a class="pill-link" href={scholarUrl} target="_blank" rel="noreferrer">Google Scholar ↗</a>
+      </div>
+      <div class="pubs">
+        {publications.map((pub) => (
+          <article class="card pub">
+            <a class="pub__figure" href={pub.page.href} target="_blank" rel="noreferrer" tabindex="-1" aria-hidden="true">
+              <img src={pub.image} alt="" loading="lazy" decoding="async" />
+            </a>
+            <div class="pub__info">
+              <h3><a href={pub.page.href} target="_blank" rel="noreferrer">{pub.title}</a></h3>
+              <p class="pub__authors">
+                {pub.authors.map((author, i) => (
+                  <>
+                    {author === 'Aditya Nawal' ? <strong>{author}</strong> : author}
+                    {i < pub.authors.length - 1 ? ', ' : ''}
+                  </>
+                ))}
+              </p>
+              <p class="pub__summary">{pub.summary}</p>
+              <div class="pub__actions">
+                <span class="badge">{pub.venue}</span>
+                <a class="pill-link" href={pub.pdf} target="_blank" rel="noreferrer">PDF</a>
+                <a class="pill-link" href={pub.page.href} target="_blank" rel="noreferrer">{pub.page.label}</a>
               </div>
             </div>
           </article>
+        ))}
+      </div>
+    </section>
 
-          <article class="academic-publication">
-            <figure class="academic-publication__figure">
-              <a href="https://dl.acm.org/doi/10.1145/3689641" target="_blank" rel="noreferrer">
-                <img src="/images/generative-ai-figure-1.png" alt="Figure 1 comparing VAE, GAN, transformer, autoregressive, and diffusion architectures" />
-              </a>
-              <figcaption>Exact paper figure · Figure 1</figcaption>
-            </figure>
-            <div class="academic-publication__info">
-              <h3><a href="https://dl.acm.org/doi/10.1145/3689641" target="_blank" rel="noreferrer">Revolutionizing Visuals: The Role of Generative AI in Modern Image Generation</a></h3>
-              <p class="academic-publication__authors">Gaurang Bansal, <strong>Aditya Nawal</strong>, Vinay Chamola, Norbert Herencsar</p>
-              <p class="academic-publication__summary">A comprehensive study of modern generative image systems, their capabilities, limitations, and deployment trade-offs.</p>
-              <div class="academic-publication__actions">
-                <span class="venue-badge">ACM TOMM 2024</span>
-                <a class="publication-button" href="https://dspace.vut.cz/bitstreams/d59c3f08-5ffc-4930-ac2c-c7df569cfcf9/download" target="_blank" rel="noreferrer">PDF</a>
-                <a class="publication-button" href="https://dl.acm.org/doi/10.1145/3689641" target="_blank" rel="noreferrer">Publisher</a>
-              </div>
-            </div>
-          </article>
+    <section class="section" id="contact">
+      <h2 class="section__title">Contact</h2>
+      <div class="card contact">
+        <p>I welcome conversations about language-model agents, retrieval security, multilingual AI safety, and research collaborations.</p>
+        <a class="pill-link pill-link--filled" href="mailto:adityanawal@u.nus.edu"><SiteIcon name="email" /> <span>adityanawal@u.nus.edu</span></a>
+      </div>
+    </section>
 
-          <article class="academic-publication">
-            <figure class="academic-publication__figure">
-              <a href="https://ieeexplore.ieee.org/document/10461070/" target="_blank" rel="noreferrer">
-                <img src="/images/iomt-figure-1.png" alt="Figure 1 showing the proposed IoMT incremental-learning methodology" />
-              </a>
-              <figcaption>Exact paper figure · Figure 1</figcaption>
-            </figure>
-            <div class="academic-publication__info">
-              <h3><a href="https://ieeexplore.ieee.org/document/10461070/" target="_blank" rel="noreferrer">An IoMT-based Incremental Learning Framework with a Novel Feature Selection Algorithm for Intelligent Diagnosis in Smart Healthcare</a></h3>
-              <p class="academic-publication__authors">Siva Sai, Kartikey Singh Bhandari, <strong>Aditya Nawal</strong>, Vinay Chamola, Biplab Sikdar</p>
-              <p class="academic-publication__summary">An edge-enabled incremental-learning framework for accurate and efficient diagnosis in smart healthcare.</p>
-              <div class="academic-publication__actions">
-                <span class="venue-badge">IEEE TMLCN 2024</span>
-                <a class="publication-button" href="https://www.ece.nus.edu.sg/stfpage/bsikdar/papers/tmlcn_healthcare_24.pdf" target="_blank" rel="noreferrer">PDF</a>
-                <a class="publication-button" href="https://ieeexplore.ieee.org/document/10461070/" target="_blank" rel="noreferrer">Publisher</a>
-              </div>
-            </div>
-          </article>
-        </div>
-      </section>
-
-      <section class="academic-section contact-section-compact" id="contact">
-        <h2>Contact</h2>
-        <div>
-          <p>I welcome conversations about language-model agents, retrieval security, multilingual AI safety, and research collaborations.</p>
-          <a class="email-link" href="mailto:adityanawal@u.nus.edu"><SiteIcon name="email" /> <span>adityanawal@u.nus.edu</span></a>
-        </div>
-      </section>
-
-      <footer class="academic-footer">
-        <span>© 2026 Aditya Nawal</span>
-        <span>Design informed by <a href="https://github.com/msaveski/www_personal" target="_blank" rel="noreferrer">Martin Saveski</a> and <a href="https://github.com/myyzzzoooo/myyzzzoooo.github.io" target="_blank" rel="noreferrer">Hoiyeong Jin</a>.</span>
-      </footer>
-    </div>
+    <footer class="footer">© 2026 Aditya Nawal</footer>
   </main>
 </Layout>
+
+<script>
+  const links = Array.from(document.querySelectorAll<HTMLAnchorElement>('.tabs a[href^="#"]'));
+  const sections = links.flatMap((link) => document.querySelector<HTMLElement>(link.hash) ?? []);
+
+  const highlight = () => {
+    const probe = window.scrollY + window.innerHeight * 0.35;
+    let current = sections[0]?.id;
+    for (const section of sections) {
+      if (section.offsetTop <= probe) current = section.id;
+    }
+    const atBottom = window.scrollY + window.innerHeight >= document.documentElement.scrollHeight - 4;
+    if (atBottom) current = sections[sections.length - 1]?.id;
+    for (const link of links) {
+      link.classList.toggle('is-active', link.hash === `#${current}`);
+    }
+  };
+
+  window.addEventListener('scroll', highlight, { passive: true });
+  highlight();
+</script>

@@ -7,8 +7,8 @@ interface Props {
 }
 
 const {
-  title = 'Aditya Nawal — Research Portfolio',
-  description = 'Research portfolio of Aditya Nawal, PhD researcher at the National University of Singapore..',
+  title = 'Aditya Nawal',
+  description = 'Aditya Nawal is a PhD researcher at the National University of Singapore working on the safety and security of language-model agents.',
 } = Astro.props;
 
 const canonical = Astro.site ? new URL(Astro.url.pathname, Astro.site) : Astro.url;
@@ -38,6 +38,12 @@ const personSchema = {
     'Multilingual AI safety',
   ],
 };
+const websiteSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'WebSite',
+  name: 'Aditya Nawal',
+  url: 'https://aditya-nawal.github.io/',
+};
 ---
 
 <!doctype html>
@@ -53,7 +59,7 @@ const personSchema = {
     <link rel="canonical" href={canonical} />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta property="og:type" content="profile" />
-    <meta property="og:site_name" content="Aditya Nawal — Research Portfolio" />
+    <meta property="og:site_name" content="Aditya Nawal" />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonical} />
@@ -64,6 +70,7 @@ const personSchema = {
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={socialImage} />
     <script is:inline type="application/ld+json" set:html={JSON.stringify(personSchema)} />
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(websiteSchema)} />
     <title>{title}</title>
   </head>
   <body>
