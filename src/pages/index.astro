@@ -46,7 +46,7 @@ const publications = [
       'Tool-safety work mostly examines what happens after an agent calls a tool. We study the earlier decision to make the call, which request factors drive it, and whether written refusals reflect it.',
     venue: 'arXiv 2026',
     image: '/images/before-retrieval-begins.png',
-    page: { label: 'arXiv', href: 'https://arxiv.org/abs/2610.23071' },
+    href: 'https://arxiv.org/abs/2610.23071',
     pdf: 'https://arxiv.org/pdf/2610.23071',
   },
   {
@@ -56,7 +56,7 @@ const publications = [
       'Varying the request, page, and response languages across ten models and seven languages, we separate how language changes tool admission from how it changes harmfulness after retrieval.',
     venue: 'arXiv 2026',
     image: '/images/disentangling-language.png',
-    page: { label: 'arXiv', href: 'https://arxiv.org/abs/2610.23093' },
+    href: 'https://arxiv.org/abs/2610.23093',
     pdf: 'https://arxiv.org/pdf/2610.23093',
   },
   {
@@ -66,7 +66,7 @@ const publications = [
       'Different valid tokenizations of the same text can bypass knowledge edits and unlearning in open-weight models. We introduce Toketive, an attack that detects edited facts and recovers pre-edit answers using only the released model.',
     venue: 'arXiv 2026',
     image: '/images/tokens-remember.png',
-    page: { label: 'arXiv', href: 'https://arxiv.org/abs/2609.29045' },
+    href: 'https://arxiv.org/abs/2609.29045',
     pdf: 'https://arxiv.org/pdf/2609.29045',
   },
   {
@@ -75,7 +75,7 @@ const publications = [
     summary: 'We study how incorporating web retrieval can weaken safety alignment in language-model agents.',
     venue: 'EMNLP 2026 Findings',
     image: '/images/relevance-as-a-vulnerability.png',
-    page: { label: 'arXiv', href: 'https://arxiv.org/abs/2605.29224' },
+    href: 'https://arxiv.org/abs/2605.29224',
     pdf: 'https://arxiv.org/pdf/2605.29224',
   },
   {
@@ -84,7 +84,7 @@ const publications = [
     summary: 'A comprehensive study of modern generative image systems, their capabilities, limitations, and deployment trade-offs.',
     venue: 'ACM TOMM 2024',
     image: '/images/generative-ai-figure-1.png',
-    page: { label: 'Publisher', href: 'https://dl.acm.org/doi/10.1145/3689641' },
+    href: 'https://dl.acm.org/doi/10.1145/3689641',
     pdf: 'https://dspace.vut.cz/bitstreams/d59c3f08-5ffc-4930-ac2c-c7df569cfcf9/download',
   },
   {
@@ -93,7 +93,7 @@ const publications = [
     summary: 'An edge-enabled incremental-learning framework for accurate and efficient diagnosis in smart healthcare.',
     venue: 'IEEE TMLCN 2024',
     image: '/images/iomt-figure-1.png',
-    page: { label: 'Publisher', href: 'https://ieeexplore.ieee.org/document/10461070/' },
+    href: 'https://ieeexplore.ieee.org/document/10461070/',
     pdf: 'https://www.ece.nus.edu.sg/stfpage/bsikdar/papers/tmlcn_healthcare_24.pdf',
   },
 ];
@@ -140,11 +140,11 @@ const publications = [
       <div class="pubs">
         {publications.map((pub) => (
           <article class="card pub">
-            <a class="pub__figure" href={pub.page.href} target="_blank" rel="noreferrer" tabindex="-1" aria-hidden="true">
+            <a class="pub__figure" href={pub.href} target="_blank" rel="noreferrer" tabindex="-1" aria-hidden="true">
               <img src={pub.image} alt="" loading="lazy" decoding="async" />
             </a>
             <div class="pub__info">
-              <h3><a href={pub.page.href} target="_blank" rel="noreferrer">{pub.title}</a></h3>
+              <h3><a href={pub.href} target="_blank" rel="noreferrer">{pub.title}</a></h3>
               <p class="pub__authors">
                 {pub.authors.map((author, i) => (
                   <>
@@ -157,7 +157,6 @@ const publications = [
               <div class="pub__actions">
                 <span class="badge">{pub.venue}</span>
                 <a class="pill-link" href={pub.pdf} target="_blank" rel="noreferrer">PDF</a>
-                <a class="pill-link" href={pub.page.href} target="_blank" rel="noreferrer">{pub.page.label}</a>
               </div>
             </div>
           </article>
