@@ -15,8 +15,20 @@ Build the static site with `npm run build`. The generated files are written to `
 
 Research projects and publications are stored as Markdown files in `src/content/`.
 
-## CV versions
+## CV
 
-The public academic CV lives in `public/cv.pdf`. The industry AI research CV lives at `public/cv-industry.pdf`; it is accessible by direct URL but is not linked from the website's pages or navigation. This is an unlisted public file, not an access-controlled document.
+One CV is maintained at `public/cv.pdf`, compiled from `main.tex` in the existing Overleaf project by the hourly and push-triggered deployment workflow.
 
-Both are compiled from the existing Overleaf project by the hourly and push-triggered deployment workflow. `main.tex` contains the academic narrative, `industry.tex` contains the industry narrative, and `cv-shared.tex` holds common facts, education, employment dates, skills, layout and publication records. Update shared details once in Overleaf to keep both versions consistent.
+The earlier industry variant and shared-source split were retired. Their source and PDF remain recoverable from Git history. Keep NUS, Microsoft and Akamai under a single Experience section, preserve Ongoing Works, and use explicit positive spacing between headings, entries and bullets. Check the rendered PDF before publishing; do not compress spacing merely to force a page count.
+
+To recover the retired sources in the Overleaf Git checkout:
+
+```bash
+git restore --source=d82bf52 -- industry.tex cv-shared.tex
+```
+
+To recover the retired industry PDF in this website checkout:
+
+```bash
+git restore --source=a61f042 -- public/cv-industry.pdf
+```
