@@ -1,6 +1,7 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import SiteIcon from '../components/SiteIcon.astro';
+import { news } from '../data/news';
 import '../styles/home.css';
 
 const scholarUrl = 'https://scholar.google.com/citations?user=jUBC5FwAAAAJ&hl=en';
@@ -114,7 +115,7 @@ const publications = [
     <header class="hero" id="top">
       <img class="hero__photo" src="/images/profile.jpg" alt="Aditya Nawal" width="200" height="200" fetchpriority="high" />
       <div class="hero__copy">
-        <p class="hero__eyebrow">Language-model agents · AI safety · Security</p>
+        <p class="hero__eyebrow"><span class="accent-cycle">Language-model agents</span> · <span class="accent-cycle accent-cycle--later">AI safety</span> · Security</p>
         <h1>Aditya Nawal</h1>
         <p class="hero__quote">A grateful heart is a happy heart</p>
         <p class="hero__role">PhD Researcher · National University of Singapore</p>
@@ -128,6 +129,7 @@ const publications = [
 
     <nav class="tabs" aria-label="Primary navigation">
       <a href="#about">About</a>
+      <a href="#news">News</a>
       <a href="#publications">Publications</a>
       <a href="#career">Career</a>
       <a href="#contact">Contact</a>
@@ -137,9 +139,33 @@ const publications = [
     <section class="section" id="about">
       <h2 class="section__title">About</h2>
       <div class="card about">
-        <p>I am a PhD researcher in Electrical and Computer Engineering at NUS. My research examines the safety and security of language-model agents, particularly how retrieval and tool use alter model behaviour and how these effects transfer across languages.</p>
+        <p>I am a PhD researcher in Electrical and Computer Engineering at NUS. My research examines the <strong class="accent-cycle">safety and security</strong> of language-model agents, particularly how <strong class="accent-cycle accent-cycle--later">retrieval and tool use</strong> alter model behaviour and how these effects transfer across languages.</p>
         <p>Before starting my PhD, I was a Software Development Engineer at Microsoft, where I built Azure OpenAI-assisted reasoning workflows and production tooling for cloud network diagnosis.</p>
       </div>
+    </section>
+
+    <section class="section" id="news" aria-labelledby="news-heading">
+      <div class="section__head">
+        <h2 class="section__title" id="news-heading">News</h2>
+        <span class="news-caption">Recent milestones</span>
+      </div>
+      <ol class="card news-list">
+        {news.map((item) => (
+          <li class="news-item">
+            <div class="news-item__meta">
+              <time datetime={item.date}>{item.label}</time>
+              <span class="news-item__category">{item.category}</span>
+            </div>
+            <p>
+              {item.parts.map((part) => part.href ? (
+                <a href={part.href} target="_blank" rel="noreferrer" class:list={{ 'accent-cycle': part.emphasis }}>{part.text}</a>
+              ) : (
+                <span class:list={{ 'accent-cycle news-item__emphasis': part.emphasis }}>{part.text}</span>
+              ))}
+            </p>
+          </li>
+        ))}
+      </ol>
     </section>
 
     <section class="section" id="publications">

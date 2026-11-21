@@ -237,6 +237,84 @@
   margin-top: 14px;
 }
 
+/* ---------- Research updates and restrained color motion ---------- */
+
+.accent-cycle {
+  color: #315f9b;
+  animation: research-colors 12s ease-in-out infinite;
+}
+
+.accent-cycle--later { animation-delay: -4s; }
+
+@keyframes research-colors {
+  0%, 100% { color: #315f9b; }
+  33% { color: #216d69; }
+  66% { color: #74529b; }
+}
+
+.news-caption {
+  color: var(--ink-soft);
+  font-size: .8rem;
+}
+
+.news-list {
+  margin: 18px 0 0;
+  padding: 6px 28px;
+  list-style: none;
+}
+
+.news-item {
+  display: grid;
+  grid-template-columns: 108px minmax(0, 1fr);
+  gap: 24px;
+  padding: 20px 0;
+}
+
+.news-item + .news-item { border-top: 1px solid var(--line); }
+
+.news-item__meta {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 7px;
+  padding-top: 3px;
+}
+
+.news-item time {
+  color: var(--accent-deep);
+  font-size: .8rem;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.news-item__category {
+  padding: 3px 8px;
+  border-radius: 6px;
+  background: var(--accent-soft);
+  color: var(--accent-deep);
+  font-size: .65rem;
+  font-weight: 600;
+}
+
+.news-item p {
+  margin: 0;
+  color: var(--ink);
+  font-size: .93rem;
+  line-height: 1.7;
+  overflow-wrap: anywhere;
+}
+
+.news-item p a {
+  color: var(--accent-deep);
+  font-weight: 650;
+  text-decoration: underline;
+  text-decoration-color: #b7cbe3;
+  text-underline-offset: 3px;
+}
+
+.news-item p a:hover { text-decoration-color: currentColor; }
+.news-item__emphasis { font-weight: 650; }
+
 /* ---------- Career ---------- */
 
 .career {
@@ -572,6 +650,21 @@
     gap: 16px;
   }
 
+  .news-list { padding: 4px 20px; }
+
+  .news-item {
+    grid-template-columns: 1fr;
+    gap: 9px;
+    padding: 18px 0;
+  }
+
+  .news-item__meta {
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+    padding-top: 0;
+  }
+
   .pub__info {
     padding: 0 6px 6px;
   }
@@ -631,6 +724,7 @@
   .home *::before,
   .home *::after {
     transition-duration: .01ms !important;
+    animation: none !important;
   }
 
   .pub:hover,
