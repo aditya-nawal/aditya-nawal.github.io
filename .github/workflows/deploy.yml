@@ -52,24 +52,28 @@ jobs:
             previous_revision=$(cat .overleaf-cv-revision)
           fi
           echo "revision=$revision" >> "$GITHUB_OUTPUT"
-          if [ "$revision" = "$previous_revision" ]; then
+          if [ "$revision" = "$previous_revision" ] && [ -s public/cv.pdf ] && [ -s public/cv-industry.pdf ]; then
             echo "cv_changed=false" >> "$GITHUB_OUTPUT"
           else
             echo "cv_changed=true" >> "$GITHUB_OUTPUT"
           fi
 
-      - name: Compile latest Overleaf CV
+      - name: Compile academic and industry CVs
         if: steps.overleaf.outputs.cv_changed == 'true'
         uses: xu-cheng/latex-action@v3
         with:
-          root_file: main.tex
+          root_file: |
+            main.tex
+            industry.tex
           texlive_version: '2025'
           working_directory: ${{ github.workspace }}/.cv-source
           args: -pdf -halt-on-error -file-line-error -interaction=nonstopmode
 
-      - name: Use the latest CV PDF
+      - name: Use the latest CV PDFs
         if: steps.overleaf.outputs.cv_changed == 'true'
-        run: cp "$GITHUB_WORKSPACE/.cv-source/main.pdf" public/cv.pdf
+        run: |
+          cp "$GITHUB_WORKSPACE/.cv-source/main.pdf" public/cv.pdf
+          cp "$GITHUB_WORKSPACE/.cv-source/industry.pdf" public/cv-industry.pdf
 
       - name: Save refreshed CV and revision
         if: steps.overleaf.outputs.cv_changed == 'true'
@@ -79,9 +83,9 @@ jobs:
           printf '%s\n' "$OVERLEAF_REVISION" > .overleaf-cv-revision
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add public/cv.pdf .overleaf-cv-revision
+          git add public/cv.pdf public/cv-industry.pdf .overleaf-cv-revision
           if ! git diff --cached --quiet; then
-            git commit -m "Sync CV PDF from Overleaf"
+            git commit -m "Sync academic and industry CVs from Overleaf"
             git push
           fi
 
