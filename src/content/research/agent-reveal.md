@@ -7,8 +7,8 @@ featured: true
 status: Findings of EMNLP 2026
 summary: How web retrieval can degrade safety alignment in language-model agents — and why relevance itself can become part of the attack surface.
 question: When retrieved context is relevant, can relevance itself become a safety vulnerability?
-paper: https://arxiv.org/abs/2605.29224
-pdf: https://arxiv.org/pdf/2605.29224
+paper: https://aclanthology.org/2026.findings-emnlp.2408/
+pdf: https://aclanthology.org/2026.findings-emnlp.2408.pdf
 ---
 
 ## The question
