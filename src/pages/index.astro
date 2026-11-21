@@ -147,14 +147,14 @@ const publications = [
     <section class="section" id="news" aria-labelledby="news-heading">
       <div class="section__head">
         <h2 class="section__title" id="news-heading">News</h2>
-        <span class="news-caption">Recent milestones</span>
+        <span class="news-caption" id="news-scroll-hint">Scroll for more</span>
       </div>
-      <ol class="card news-list">
+      <div class="card news-scroll" role="region" aria-labelledby="news-heading" aria-describedby="news-scroll-hint" tabindex="0">
+      <ol class="news-list">
         {news.map((item) => (
           <li class="news-item">
             <div class="news-item__meta">
               <time datetime={item.date}>{item.label}</time>
-              <span class="news-item__category">{item.category}</span>
             </div>
             <p>
               {item.parts.map((part) => part.href ? (
@@ -166,6 +166,7 @@ const publications = [
           </li>
         ))}
       </ol>
+      </div>
     </section>
 
     <section class="section" id="publications">
